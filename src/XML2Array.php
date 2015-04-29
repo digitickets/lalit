@@ -19,6 +19,9 @@ use Exception;
  * Version: 0.2 (04 Mar 2012)
  *            Fixed typo 'DomDocument' to 'DOMDocument'
  *
+ * Version: 1.0 (29 April 2015)
+ *          - Copied to GitHub by RQuadling.
+ *
  * Usage:
  *       $array = XML2Array::createArray($xml);
  */

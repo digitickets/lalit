@@ -30,6 +30,9 @@ use DOMDocument;
  * Version: 0.8 (02 May 2012)
  *          - Removed htmlspecialchars() before adding to text node or attributes.
  *
+ * Version: 1.0 (29 April 2015)
+ *          - Copied to GitHub by RQuadling.
+ *
  * Usage:
  *       $xml = Array2XML::createXML('root_node_name', $php_array);
  *       echo $xml->saveXML();
