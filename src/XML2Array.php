@@ -2,6 +2,7 @@
 namespace LaLit;
 
 use \DOMDocument;
+use \DOMNode;
 use \Exception;
 
 /**
@@ -22,12 +23,17 @@ use \Exception;
  * Version: 1.0 (29 April 2015)
  *          - Copied to GitHub by RQuadling.
  *
+ * Version: 1.2 (09 September 2015)
+ *          - Static Analysis and documentation (Thanks to Maxence Winandy)
+ *
  * Usage:
  *       $array = XML2Array::createArray($xml);
  */
 class XML2Array
 {
-
+    /**
+     * @var string $encoding
+     */
     private static $encoding = 'UTF-8';
 
     /**
@@ -38,13 +44,10 @@ class XML2Array
     /**
      * Convert an XML to Array
      *
-     * @param $input_xml
+     * @param string|DOMDocument $input_xml
      *
-     * @return DOMDocument
+     * @return array
      * @throws Exception
-     * @internalparam string $node_name - name of the root node to be converted
-     * @internalparam array $arr - array to be converterd
-     *
      */
     public static function createArray($input_xml)
     {
@@ -52,11 +55,11 @@ class XML2Array
         if (is_string($input_xml)) {
             $parsed = $xml->loadXML($input_xml);
             if (!$parsed) {
-                throw new \Exception('[XML2Array] Error parsing the XML string.');
+                throw new Exception('[XML2Array] Error parsing the XML string.');
             }
         } else {
             if (get_class($input_xml) != 'DOMDocument') {
-                throw new \Exception('[XML2Array] The input XML object should be of type: DOMDocument.');
+                throw new Exception('[XML2Array] The input XML object should be of type: DOMDocument.');
             }
             $xml = self::$xml = $input_xml;
         }
@@ -84,13 +87,13 @@ class XML2Array
     /**
      * Convert an Array to XML
      *
-     * @param mixed $node - XML as a string or as an object of DOMDocument
+     * @param DOMNode $node - XML as a string or as an object of DOMDocument
      *
-     * @return mixed
+     * @return array
      */
-    private static function convert($node)
+    private static function convert(DOMNode $node)
     {
-        $output = array();
+        $output = [];
 
         switch ($node->nodeType) {
             case XML_CDATA_SECTION_NODE:
@@ -112,7 +115,7 @@ class XML2Array
 
                         // assume more nodes of same kind are coming
                         if (!isset($output[$t])) {
-                            $output[$t] = array();
+                            $output[$t] = [];
                         }
                         $output[$t][] = $v;
                     } else {
@@ -138,13 +141,13 @@ class XML2Array
 
                 // loop through the attributes and collect them
                 if ($node->attributes->length) {
-                    $a = array();
+                    $a = [];
                     foreach ($node->attributes as $attrName => $attrNode) {
                         $a[$attrName] = (string)$attrNode->value;
                     }
                     // if its an leaf node, store the value in @value instead of directly storing it.
                     if (!is_array($output)) {
-                        $output = array('@value' => $output);
+                        $output = ['@value' => $output];
                     }
                     $output['@attributes'] = $a;
                 }
@@ -154,8 +157,10 @@ class XML2Array
         return $output;
     }
 
-    /*
+    /**
      * Get the root XML node, if there isn't one, create it.
+     *
+     * @return DOMDocument
      */
     private static function getXMLRoot()
     {

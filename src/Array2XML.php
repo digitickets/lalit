@@ -2,6 +2,8 @@
 namespace LaLit;
 
 use \DOMDocument;
+use \DOMNode;
+use \Exception;
 
 /**
  * Array2XML: A class to convert array in PHP to XML
@@ -33,14 +35,23 @@ use \DOMDocument;
  * Version: 1.0 (29 April 2015)
  *          - Copied to GitHub by RQuadling.
  *
+ * Version: 1.2 (09 September 2015)
+ *          - Static Analysis and documentation (Thanks to Maxence Winandy)
+ *
  * Usage:
  *       $xml = Array2XML::createXML('root_node_name', $php_array);
  *       echo $xml->saveXML();
  */
 class Array2XML
 {
-
+    /**
+     * @var string $encoding
+     */
     private static $encoding = 'UTF-8';
+
+    /**
+     * @var DomDocument|null $xml
+     */
     private static $xml = null;
 
     /**
@@ -51,7 +62,7 @@ class Array2XML
      *
      * @return DomDocument
      */
-    public static function createXML($node_name, $arr = array())
+    public static function createXML($node_name, $arr = [])
     {
         $xml = self::getXMLRoot();
         $xml->appendChild(self::convert($node_name, $arr));
@@ -76,6 +87,13 @@ class Array2XML
         self::$encoding           = $encoding;
     }
 
+    /**
+     * Get string representation of boolean value
+     *
+     * @param mixed $v
+     *
+     * @return string
+     */
     private static function bool2str($v)
     {
         //convert boolean to text value.
@@ -84,10 +102,6 @@ class Array2XML
 
         return $v;
     }
-
-    /*
-     * Get the root XML node, if there isn't one, create it.
-     */
 
     /**
      * Convert an Array to XML
@@ -98,9 +112,8 @@ class Array2XML
      * @return DOMNode
      * @throws Exception
      */
-    private static function convert($node_name, $arr = array())
+    private static function convert($node_name, $arr = [])
     {
-
         //print_arr($node_name);
         $xml  = self::getXMLRoot();
         $node = $xml->createElement($node_name);
@@ -110,7 +123,7 @@ class Array2XML
             if (isset($arr['@attributes'])) {
                 foreach ($arr['@attributes'] as $key => $value) {
                     if (!self::isValidTagName($key)) {
-                        throw new \Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
+                        throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
                     }
                     $node->setAttribute($key, self::bool2str($value));
                 }
@@ -137,7 +150,7 @@ class Array2XML
             // recurse to get the node for that key
             foreach ($arr as $key => $value) {
                 if (!self::isValidTagName($key)) {
-                    throw new \Exception('[Array2XML] Illegal character in tag name. tag: ' . $key . ' in node: ' . $node_name);
+                    throw new Exception('[Array2XML] Illegal character in tag name. tag: ' . $key . ' in node: ' . $node_name);
                 }
                 if (is_array($value) && is_numeric(key($value))) {
                     // MORE THAN ONE NODE OF ITS KIND;
@@ -163,10 +176,11 @@ class Array2XML
         return $node;
     }
 
-    /*
-     * Get string representation of boolean value
+    /**
+     * Get the root XML node, if there isn't one, create it.
+     *
+     * @return DomDocument|null
      */
-
     private static function getXMLRoot()
     {
         if (empty(self::$xml)) {
@@ -176,11 +190,14 @@ class Array2XML
         return self::$xml;
     }
 
-    /*
+    /**
      * Check if the tag name or attribute name contains illegal characters
      * Ref: http://www.w3.org/TR/xml/#sec-common-syn
+     *
+     * @param string $tag
+     *
+     * @return bool
      */
-
     private static function isValidTagName($tag)
     {
         $pattern = '/^[a-z_]+[a-z0-9\:\-\.\_]*[^:]*$/i';
