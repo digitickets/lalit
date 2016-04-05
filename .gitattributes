@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+*     text=auto
+
+# Force text mode
+*.php text diff=php
+*.xml text
