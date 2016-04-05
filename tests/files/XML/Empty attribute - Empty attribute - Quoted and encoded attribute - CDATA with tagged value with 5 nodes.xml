@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<root attribute1="">
+  <collection attribute1="">
+    <node attribute4="'&lt;important&gt;'"><![CDATA[<very_important>]]></node>
+    <node attribute4="'&lt;important&gt;'"><![CDATA[<very_important>]]></node>
+    <node attribute4="'&lt;important&gt;'"><![CDATA[<very_important>]]></node>
+    <node attribute4="'&lt;important&gt;'"><![CDATA[<very_important>]]></node>
+    <node attribute4="'&lt;important&gt;'"><![CDATA[<very_important>]]></node>
+  </collection>
+</root>

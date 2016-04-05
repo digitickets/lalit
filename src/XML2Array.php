@@ -1,9 +1,9 @@
 <?php
 namespace LaLit;
 
-use \DOMDocument;
-use \DOMNode;
-use \Exception;
+use DOMDocument;
+use DOMNode;
+use Exception;
 
 /**
  * XML2Array: A class to convert XML to array in PHP
@@ -53,15 +53,18 @@ class XML2Array
     {
         $xml = self::getXMLRoot();
         if (is_string($input_xml)) {
-            $parsed = $xml->loadXML($input_xml);
-            if (!$parsed) {
-                throw new Exception('[XML2Array] Error parsing the XML string.');
+            try {
+                $xml->loadXML($input_xml);
+            } catch (Exception $ex) {
+                throw new Exception('[XML2Array] Error parsing the XML string.' . PHP_EOL . $ex->getMessage());
             }
-        } else {
+        } elseif (is_object($input_xml)) {
             if (get_class($input_xml) != 'DOMDocument') {
                 throw new Exception('[XML2Array] The input XML object should be of type: DOMDocument.');
             }
             $xml = self::$xml = $input_xml;
+        } else {
+            throw new Exception('[XML2Array] Invalid input');
         }
         $array[$xml->documentElement->tagName] = self::convert($xml->documentElement);
         self::$xml                             = null;    // clear the xml node in the class for 2nd time use.
@@ -76,7 +79,7 @@ class XML2Array
      * @param bool   $standalone
      * @param bool   $format_output
      */
-    public static function init($version = '1.0', $encoding = 'UTF-8', $standalone = false, $format_output = true)
+    public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output = true)
     {
         self::$xml                = new DomDocument($version, $encoding);
         self::$xml->xmlStandalone = $standalone;
@@ -143,7 +146,7 @@ class XML2Array
                 if ($node->attributes->length) {
                     $a = [];
                     foreach ($node->attributes as $attrName => $attrNode) {
-                        $a[$attrName] = (string)$attrNode->value;
+                        $a[$attrName] = $attrNode->value;
                     }
                     // if its an leaf node, store the value in @value instead of directly storing it.
                     if (!is_array($output)) {

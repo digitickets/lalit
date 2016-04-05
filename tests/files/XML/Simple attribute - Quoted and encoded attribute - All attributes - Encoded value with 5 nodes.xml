@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<root attribute3="1">
+  <collection attribute4="'&lt;important&gt;'">
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">&lt;escaped&gt;</node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">&lt;escaped&gt;</node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">&lt;escaped&gt;</node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">&lt;escaped&gt;</node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">&lt;escaped&gt;</node>
+  </collection>
+</root>
