@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit
+        colors="true"
+        bootstrap="./tests/bootstrap.php"
+        verbose="true"
+        stoponfailure ="true"
+>
+    <testsuite name="TypedArray">
+        <directory>./tests</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
