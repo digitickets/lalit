@@ -5,10 +5,9 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/rquadling/lalit.svg?style=plastic)](https://packagist.org/packages/rquadling/lalit)
 [![Packagist](https://img.shields.io/packagist/dt/rquadling/lalit.svg?style=plastic)](https://packagist.org/packages/rquadling/lalit)
 
-LaLit's XML2Array / Array2XML
-=============================
+# LaLit's XML2Array / Array2XML
 
-A `\RQuadling\LaLit` allows you to convert XML to a PHP array and back again.
+`\RQuadling\LaLit` allows you to convert XML to a PHP array and back again.
 
 The base code was developed by Lalit Patel and is available from http://www.lalit.org/lab/
 
@@ -17,7 +16,10 @@ Array2XML : http://www.lalit.org/lab/convert-php-array-to-xml-with-attributes/
 
 I've added additional unit tests via a generator (so probably too many tests)
 
-@todo
-=====
+# Version History
+
+Please read the [CHANGELOG](CHANGELOG.md) document.
+
+# @todo
 
 1. Add support for <!-- comments --> within the XML, such that when converting from XML -> PHP -> XML, the comments are preserved.

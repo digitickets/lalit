@@ -16,15 +16,6 @@ use Exception;
  * Website: http://www.lalit.org/lab/convert-xml-to-array-in-php-xml2array
  * License: Apache License 2.0
  *          http://www.apache.org/licenses/LICENSE-2.0
- * Version: 0.1 (07 Dec 2011)
- * Version: 0.2 (04 Mar 2012)
- *            Fixed typo 'DomDocument' to 'DOMDocument'
- *
- * Version: 1.0 (29 April 2015)
- *          - Copied to GitHub by RQuadling.
- *
- * Version: 1.2 (09 September 2015)
- *          - Static Analysis and documentation (Thanks to Maxence Winandy)
  *
  * Usage:
  *       $array = XML2Array::createArray($xml);
@@ -55,6 +46,9 @@ class XML2Array
         if (is_string($input_xml)) {
             try {
                 $xml->loadXML($input_xml);
+                if (!is_object($xml) || empty($xml->documentElement)){
+                    throw new Exception;
+                }
             } catch (Exception $ex) {
                 throw new Exception('[XML2Array] Error parsing the XML string.' . PHP_EOL . $ex->getMessage());
             }
