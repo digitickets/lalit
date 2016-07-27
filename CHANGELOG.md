@@ -1,5 +1,9 @@
 # Version History
 
+**1.6** (2016/07/27)
+
+* Empty values/attributes/cdata are now handled appropriately (Fixes [#3](https://github.com/rquadling/lalit/issues/3))
+
 **1.5** (2016/06/29)
 
 * Reintroduce support for hhvm

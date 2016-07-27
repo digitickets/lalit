@@ -111,7 +111,7 @@ class XML2Array
                         $t = $child->tagName;
 
                         // assume more nodes of same kind are coming
-                        if (!isset($output[$t])) {
+                        if (!array_key_exists($t, $output)) {
                             $output[$t] = [];
                         }
                         $output[$t][] = $v;

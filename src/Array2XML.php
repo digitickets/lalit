@@ -36,7 +36,7 @@ class Array2XML
      * Convert an Array to XML
      *
      * @param string $node_name - name of the root node to be converted
-     * @param array  $arr       - aray to be converterd
+     * @param array  $arr       - array to be converted
      *
      * @return DomDocument
      */
@@ -98,7 +98,7 @@ class Array2XML
 
         if (is_array($arr)) {
             // get the attributes first.;
-            if (isset($arr['@attributes'])) {
+            if (array_key_exists('@attributes', $arr)) {
                 foreach ($arr['@attributes'] as $key => $value) {
                     if (!self::isValidTagName($key)) {
                         throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
@@ -110,12 +110,12 @@ class Array2XML
 
             // check if it has a value stored in @value, if yes store the value and return
             // else check if its directly stored as string
-            if (isset($arr['@value'])) {
+            if (array_key_exists('@value', $arr)) {
                 $node->appendChild($xml->createTextNode(self::bool2str($arr['@value'])));
                 unset($arr['@value']);    //remove the key from the array once done.
                 //return from recursion, as a note with value cannot have child nodes.
                 return $node;
-            } else if (isset($arr['@cdata'])) {
+            } else if (array_key_exists('@cdata', $arr)) {
                 $node->appendChild($xml->createCDATASection(self::bool2str($arr['@cdata'])));
                 unset($arr['@cdata']);    //remove the key from the array once done.
                 //return from recursion, as a note with cdata cannot have child nodes.

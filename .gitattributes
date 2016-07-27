@@ -4,3 +4,5 @@
 # Force text mode
 *.php text diff=php
 *.xml text
+
+/tests/bugs/*.php diff=php eol=lf
