@@ -98,28 +98,34 @@ class Array2XML
 
         if (is_array($arr)) {
             // get the attributes first.;
-            if (isset($arr['@attributes'])) {
-                foreach ($arr['@attributes'] as $key => $value) {
-                    if (!self::isValidTagName($key)) {
-                        throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
+            if (array_key_exists('@attributes', $arr)) {
+                if (!empty($arr['@attributes']) && is_array($arr['@attributes'])) {
+                    foreach ($arr['@attributes'] as $key => $value) {
+                        if (!self::isValidTagName($key)) {
+                            throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
+                        }
+                        $node->setAttribute($key, self::bool2str($value));
                     }
-                    $node->setAttribute($key, self::bool2str($value));
                 }
                 unset($arr['@attributes']); //remove the key from the array once done.
             }
 
             // check if it has a value stored in @value, if yes store the value and return
             // else check if its directly stored as string
-            if (isset($arr['@value'])) {
-                $node->appendChild($xml->createTextNode(self::bool2str($arr['@value'])));
-                unset($arr['@value']);    //remove the key from the array once done.
-                //return from recursion, as a note with value cannot have child nodes.
-                return $node;
-            } else if (isset($arr['@cdata'])) {
-                $node->appendChild($xml->createCDATASection(self::bool2str($arr['@cdata'])));
-                unset($arr['@cdata']);    //remove the key from the array once done.
-                //return from recursion, as a note with cdata cannot have child nodes.
-                return $node;
+            if (array_key_exists('@value', $arr)) {
+                if (!empty($arr['@value'])) {
+                    $node->appendChild($xml->createTextNode(self::bool2str($arr['@value'])));
+                    unset($arr['@value']);    //remove the key from the array once done.
+                    //return from recursion, as a note with value cannot have child nodes.
+                    return $node;
+                }
+            } else if (array_key_exists('@cdata', $arr)) {
+                if (!empty($arr['@cdata'])) {
+                    $node->appendChild($xml->createCDATASection(self::bool2str($arr['@cdata'])));
+                    unset($arr['@cdata']);    //remove the key from the array once done.
+                    //return from recursion, as a note with cdata cannot have child nodes.
+                    return $node;
+                }
             }
         }
 
