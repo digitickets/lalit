@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <root attribute3="1">
-  <collection attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">
-    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''"><![CDATA[]]></node>
-    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''"><![CDATA[]]></node>
-    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''"><![CDATA[]]></node>
-    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''"><![CDATA[]]></node>
-    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''"><![CDATA[]]></node>
+  <collection attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6="">
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6=""><![CDATA[]]></node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6=""><![CDATA[]]></node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6=""><![CDATA[]]></node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6=""><![CDATA[]]></node>
+    <node attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6=""><![CDATA[]]></node>
   </collection>
 </root>

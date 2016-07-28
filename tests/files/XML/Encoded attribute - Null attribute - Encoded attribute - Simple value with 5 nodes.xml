@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<root attribute2="&lt;important&gt;">
+  <collection attribute6="">
+    <node attribute2="&lt;important&gt;">normal</node>
+    <node attribute2="&lt;important&gt;">normal</node>
+    <node attribute2="&lt;important&gt;">normal</node>
+    <node attribute2="&lt;important&gt;">normal</node>
+    <node attribute2="&lt;important&gt;">normal</node>
+  </collection>
+</root>

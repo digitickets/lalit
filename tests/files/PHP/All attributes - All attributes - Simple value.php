@@ -12,6 +12,7 @@ return array (
         'attribute3' => '1',
         'attribute4' => '\'<important>\'',
         'attribute5' => '\'\'',
+        'attribute6' => NULL,
       ),
     ),
     '@attributes' => 
@@ -21,6 +22,7 @@ return array (
       'attribute3' => '1',
       'attribute4' => '\'<important>\'',
       'attribute5' => '\'\'',
+      'attribute6' => NULL,
     ),
   ),
 );

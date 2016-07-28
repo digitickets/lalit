@@ -16,6 +16,7 @@ return array (
             'attribute3' => '1',
             'attribute4' => '\'<important>\'',
             'attribute5' => '\'\'',
+            'attribute6' => NULL,
           ),
         ),
         1 => 
@@ -28,6 +29,7 @@ return array (
             'attribute3' => '1',
             'attribute4' => '\'<important>\'',
             'attribute5' => '\'\'',
+            'attribute6' => NULL,
           ),
         ),
         2 => 
@@ -40,6 +42,7 @@ return array (
             'attribute3' => '1',
             'attribute4' => '\'<important>\'',
             'attribute5' => '\'\'',
+            'attribute6' => NULL,
           ),
         ),
         3 => 
@@ -52,6 +55,7 @@ return array (
             'attribute3' => '1',
             'attribute4' => '\'<important>\'',
             'attribute5' => '\'\'',
+            'attribute6' => NULL,
           ),
         ),
         4 => 
@@ -64,6 +68,7 @@ return array (
             'attribute3' => '1',
             'attribute4' => '\'<important>\'',
             'attribute5' => '\'\'',
+            'attribute6' => NULL,
           ),
         ),
       ),

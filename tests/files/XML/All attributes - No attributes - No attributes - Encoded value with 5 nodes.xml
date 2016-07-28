@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<root attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''">
+<root attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="'&lt;important&gt;'" attribute5="''" attribute6="">
   <collection>
     <node>&lt;escaped&gt;</node>
     <node>&lt;escaped&gt;</node>
