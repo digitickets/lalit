@@ -46,10 +46,11 @@ class XML2Array
         if (is_string($input_xml)) {
             try {
                 $xml->loadXML($input_xml);
-                if (!is_object($xml) || empty($xml->documentElement)){
+                if (!is_object($xml) || empty($xml->documentElement)) {
                     throw new Exception;
                 }
-            } catch (Exception $ex) {
+            }
+            catch (Exception $ex) {
                 throw new Exception('[XML2Array] Error parsing the XML string.' . PHP_EOL . $ex->getMessage());
             }
         } elseif (is_object($input_xml)) {

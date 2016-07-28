@@ -44,8 +44,8 @@ class Array2XML
     {
         $xml = self::getXMLRoot();
         $xml->appendChild(self::convert($node_name, $arr));
-
         self::$xml = null;    // clear the xml node in the class for 2nd time use.
+
         return $xml;
     }
 
@@ -98,7 +98,7 @@ class Array2XML
 
         if (is_array($arr)) {
             // get the attributes first.;
-            if (array_key_exists('@attributes', $arr)) {
+            if (array_key_exists('@attributes', $arr) && is_array($arr['@attributes'])) {
                 foreach ($arr['@attributes'] as $key => $value) {
                     if (!self::isValidTagName($key)) {
                         throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
