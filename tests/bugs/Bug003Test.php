@@ -1,15 +1,12 @@
 <?php
 namespace LaLit;
 
-use PHPUnit_Framework_TestCase;
-
 /**
  * Class Bug003
  *
  * @package LaLit
- * @group   bugfixes
  */
-class Bug003 extends PHPUnit_Framework_TestCase
+class Bug003 extends \PHPUnit_Framework_TestCase
 {
     public function testNullValues()
     {

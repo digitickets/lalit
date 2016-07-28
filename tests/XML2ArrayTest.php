@@ -1,9 +1,7 @@
 <?php
 namespace LaLit;
 
-use PHPUnit_Framework_TestCase;
-
-class XML2ArrayTest extends PHPUnit_Framework_TestCase
+class XML2ArrayTest extends \PHPUnit_Framework_TestCase
 {
     public function provideInvalidObjects()
     {
@@ -29,16 +27,6 @@ class XML2ArrayTest extends PHPUnit_Framework_TestCase
             ['<?xml version="1.0" encoding="UTF-8"?><root>'],
             ['<?xml version="1.0" encoding="UTF-8"?><root><head>'],
         ];
-    }
-
-    public function provideValidXML()
-    {
-        return array_map(
-            function ($file) {
-                return [$file];
-            },
-            glob(__DIR__.'/files/XML/*.xml')
-        );
     }
 
     /**
@@ -78,34 +66,5 @@ class XML2ArrayTest extends PHPUnit_Framework_TestCase
     public function testXMLFileToArrayRejectsInvalidXML($invalidXML)
     {
         XML2Array::createArray($invalidXML);
-    }
-
-    /**
-     * @dataProvider provideValidXML
-     *
-     * @param string $testFilename
-     *
-     * @throws \Exception
-     */
-    public function testXMLToArray($testFilename)
-    {
-        $xmlString = file_get_contents($testFilename);
-        $xmlDOM = new \DOMDocument(1.0, 'UTF-8');
-        $xmlDOM->xmlStandalone = false;
-        $xmlDOM->preserveWhiteSpace = false;
-        $xmlDOM->loadXML($xmlString);
-        $xmlDOM->formatOutput = true;
-
-        if (file_exists(__DIR__.'/files/PHP/'.basename($testFilename, '.xml').'.php')) {
-            $expectedResults = @include __DIR__.'/files/PHP/'.basename($testFilename, '.xml').'.php';
-        } else {
-            $this->fail('Missing ' . __DIR__.'/files/PHP/'.basename($testFilename, '.xml').'.php');
-        }
-
-        $xmlStringResults = XML2Array::createArray($xmlString);
-        $xmlDOMResults = XML2Array::createArray($xmlDOM);
-
-        $this->assertEquals($expectedResults, $xmlStringResults, basename($testFilename, '.xml'));
-        $this->assertEquals($expectedResults, $xmlDOMResults, basename($testFilename, '.xml'));
     }
 }
