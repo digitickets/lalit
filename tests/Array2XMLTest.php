@@ -1,4 +1,5 @@
 <?php
+
 namespace LaLit;
 
 class Array2XMLTest extends \PHPUnit_Framework_TestCase
@@ -12,8 +13,7 @@ class Array2XMLTest extends \PHPUnit_Framework_TestCase
         Array2XML::createXML(
             'root',
             [
-                '@attributes' =>
-                    [
+                '@attributes' => [
                         '#attribute1' => '',
                     ],
             ]

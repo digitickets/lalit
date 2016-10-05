@@ -1,8 +1,9 @@
 <?php
+
 use LaLit\Array2XML;
 use LaLit\XML2Array;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 /**
  * @param string|string[] $tags
@@ -18,22 +19,22 @@ function generateTags($tags)
     }
 
     $attributeSet = [
-        'No attributes'                => '',
-        'Empty attribute'              => ' attribute1=""',
-        'Encoded attribute'            => ' attribute2="&lt;important&gt;"',
-        'Simple attribute'             => ' attribute3="1"',
+        'No attributes' => '',
+        'Empty attribute' => ' attribute1=""',
+        'Encoded attribute' => ' attribute2="&lt;important&gt;"',
+        'Simple attribute' => ' attribute3="1"',
         'Quoted and encoded attribute' => ' attribute4="\'&lt;important&gt;\'"',
-        'Empty quoted attribute'       => ' attribute5="\'\'"',
-        'Null attribute'               => ' attribute6="null"',
-        'All attributes'               => ' attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="\'&lt;important&gt;\'" attribute5="\'\'"  attribute6="null"',
+        'Empty quoted attribute' => ' attribute5="\'\'"',
+        'Null attribute' => ' attribute6="null"',
+        'All attributes' => ' attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="\'&lt;important&gt;\'" attribute5="\'\'"  attribute6="null"',
     ];
 
     $cDataSet = [
-        'Null value'              => 'null',
-        'Empty value'             => '',
-        'Simple value'            => 'normal',
-        'Encoded value'           => '&lt;escaped&gt;',
-        'Empty CDATA'             => '<![CDATA[]]>',
+        'Null value' => 'null',
+        'Empty value' => '',
+        'Simple value' => 'normal',
+        'Encoded value' => '&lt;escaped&gt;',
+        'Empty CDATA' => '<![CDATA[]]>',
         'CDATA with tagged value' => '<![CDATA[<very_important>]]>',
     ];
 
@@ -46,13 +47,13 @@ function generateTags($tags)
     foreach ($attributeSet as $attributeType => $attribute) {
         foreach ($cDataSet as $cdataType => $cdata) {
             if (!is_array($tag)) {
-                $results[$attributeType . ' - ' . $cdataType] = "<{$tag}{$attribute}>{$cdata}</{$tag}>";
+                $results[$attributeType.' - '.$cdataType] = "<{$tag}{$attribute}>{$cdata}</{$tag}>";
             } else {
                 $result = '';
                 foreach (range(1, $tag[1]) as $repeat) {
                     $result .= "<{$tag[0]}{$attribute}>{$cdata}</{$tag[0]}>";
                 }
-                $results[$attributeType . ' - ' . $cdataType . ' with ' . $tag[1] . ' nodes'] = $result;
+                $results[$attributeType.' - '.$cdataType.' with '.$tag[1].' nodes'] = $result;
             }
         }
     }
@@ -78,4 +79,4 @@ foreach ($docs as $key => $value) {
     ];
 }
 
-file_put_contents(__DIR__ . '/../files/testData.inc', '<?php return ' . var_export(array_values($testData), true) . ';');
+file_put_contents(__DIR__.'/../files/testData.inc', '<?php return '.var_export(array_values($testData), true).';');

@@ -1,4 +1,5 @@
 <?php
+
 namespace LaLit;
 
 class XML2ArrayTest extends \PHPUnit_Framework_TestCase

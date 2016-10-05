@@ -1,4 +1,5 @@
 <?php
+
 namespace LaLit;
 
 use DOMDocument;
@@ -23,17 +24,17 @@ use Exception;
 class Array2XML
 {
     /**
-     * @var string $encoding
+     * @var string
      */
     private static $encoding = 'UTF-8';
 
     /**
-     * @var DomDocument|null $xml
+     * @var DomDocument|null
      */
     private static $xml = null;
 
     /**
-     * Convert an Array to XML
+     * Convert an Array to XML.
      *
      * @param string $node_name - name of the root node to be converted
      * @param array  $arr       - array to be converted
@@ -50,7 +51,7 @@ class Array2XML
     }
 
     /**
-     * Initialize the root XML node [optional]
+     * Initialize the root XML node [optional].
      *
      * @param string $version
      * @param string $encoding
@@ -59,14 +60,14 @@ class Array2XML
      */
     public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output = true)
     {
-        self::$xml                = new DomDocument($version, $encoding);
+        self::$xml = new DomDocument($version, $encoding);
         self::$xml->xmlStandalone = $standalone;
-        self::$xml->formatOutput  = $format_output;
-        self::$encoding           = $encoding;
+        self::$xml->formatOutput = $format_output;
+        self::$encoding = $encoding;
     }
 
     /**
-     * Get string representation of boolean value
+     * Get string representation of boolean value.
      *
      * @param mixed $v
      *
@@ -82,18 +83,19 @@ class Array2XML
     }
 
     /**
-     * Convert an Array to XML
+     * Convert an Array to XML.
      *
      * @param string $node_name - name of the root node to be converted
      * @param array  $arr       - array to be converted
      *
      * @return DOMNode
+     *
      * @throws Exception
      */
     private static function convert($node_name, $arr = [])
     {
         //print_arr($node_name);
-        $xml  = self::getXMLRoot();
+        $xml = self::getXMLRoot();
         $node = $xml->createElement($node_name);
 
         if (is_array($arr)) {
@@ -101,7 +103,7 @@ class Array2XML
             if (array_key_exists('@attributes', $arr) && is_array($arr['@attributes'])) {
                 foreach ($arr['@attributes'] as $key => $value) {
                     if (!self::isValidTagName($key)) {
-                        throw new Exception('[Array2XML] Illegal character in attribute name. attribute: ' . $key . ' in node: ' . $node_name);
+                        throw new Exception('[Array2XML] Illegal character in attribute name. attribute: '.$key.' in node: '.$node_name);
                     }
                     $node->setAttribute($key, self::bool2str($value));
                 }
@@ -115,7 +117,7 @@ class Array2XML
                 unset($arr['@value']);    //remove the key from the array once done.
                 //return from recursion, as a note with value cannot have child nodes.
                 return $node;
-            } else if (array_key_exists('@cdata', $arr)) {
+            } elseif (array_key_exists('@cdata', $arr)) {
                 $node->appendChild($xml->createCDATASection(self::bool2str($arr['@cdata'])));
                 unset($arr['@cdata']);    //remove the key from the array once done.
                 //return from recursion, as a note with cdata cannot have child nodes.
@@ -128,7 +130,7 @@ class Array2XML
             // recurse to get the node for that key
             foreach ($arr as $key => $value) {
                 if (!self::isValidTagName($key)) {
-                    throw new Exception('[Array2XML] Illegal character in tag name. tag: ' . $key . ' in node: ' . $node_name);
+                    throw new Exception('[Array2XML] Illegal character in tag name. tag: '.$key.' in node: '.$node_name);
                 }
                 if (is_array($value) && is_numeric(key($value))) {
                     // MORE THAN ONE NODE OF ITS KIND;
@@ -170,7 +172,7 @@ class Array2XML
 
     /**
      * Check if the tag name or attribute name contains illegal characters
-     * Ref: http://www.w3.org/TR/xml/#sec-common-syn
+     * Ref: http://www.w3.org/TR/xml/#sec-common-syn.
      *
      * @param string $tag
      *

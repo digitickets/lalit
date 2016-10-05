@@ -1,12 +1,11 @@
 <?php
+
 namespace LaLit;
 
 /**
- * Class Bug003
- *
- * @package LaLit
+ * Class Bug003Test.
  */
-class Bug003 extends \PHPUnit_Framework_TestCase
+class Bug003Test extends \PHPUnit_Framework_TestCase
 {
     public function testNullValues()
     {
@@ -34,7 +33,7 @@ class Bug003 extends \PHPUnit_Framework_TestCase
 
         $actualResults = Array2XML::createXML('root', $array)->saveXML();
 
-        $expectedResults = <<< END_XML
+        $expectedResults = <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <root>
   <container>
