@@ -1,13 +1,13 @@
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rquadling/lalit.svg?style=plastic)](https://scrutinizer-ci.com/g/rquadling/lalit/?branch=master)
-[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/rquadling/lalit.svg?style=plastic)](https://scrutinizer-ci.com/coverage/g/rquadling/lalit/?branch=master)
-[![Scrutinizer Build Status](https://img.shields.io/scrutinizer/build/g/rquadling/lalit.svg?style=plastic)](https://scrutinizer-ci.com/build/g/rquadling/lalit/?branch=master)
-[![Travid Build Status](https://img.shields.io/travis/rquadling/lalit.svg?style=plastic)](https://travis-ci.org/rquadling/lalit)
-[![Latest Stable Version](https://img.shields.io/packagist/v/rquadling/lalit.svg?style=plastic)](https://packagist.org/packages/rquadling/lalit)
-[![Packagist](https://img.shields.io/packagist/dt/rquadling/lalit.svg?style=plastic)](https://packagist.org/packages/rquadling/lalit)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/digitickets/lalit.svg?style=plastic)](https://scrutinizer-ci.com/g/digitickets/lalit/?branch=master)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/digitickets/lalit.svg?style=plastic)](https://scrutinizer-ci.com/coverage/g/digitickets/lalit/?branch=master)
+[![Scrutinizer Build Status](https://img.shields.io/scrutinizer/build/g/digitickets/lalit.svg?style=plastic)](https://scrutinizer-ci.com/build/g/digitickets/lalit/?branch=master)
+[![Travid Build Status](https://img.shields.io/travis/digitickets/lalit.svg?style=plastic)](https://travis-ci.org/digitickets/lalit)
+[![Latest Stable Version](https://img.shields.io/packagist/v/digitickets/lalit.svg?style=plastic)](https://packagist.org/packages/digitickets/lalit)
+[![Packagist](https://img.shields.io/packagist/dt/digitickets/lalit.svg?style=plastic)](https://packagist.org/packages/digitickets/lalit)
 
 # LaLit's XML2Array / Array2XML
 
-`\RQuadling\LaLit` allows you to convert XML to a PHP array and back again.
+`\digitickets\LaLit` allows you to convert XML to a PHP array and back again.
 
 The base code was developed by Lalit Patel and is available from http://www.lalit.org/lab/
 
