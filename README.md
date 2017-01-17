@@ -22,4 +22,4 @@ Please read the [CHANGELOG](CHANGELOG.md) document.
 
 # @todo
 
-1. Add support for <!-- comments --> within the XML, such that when converting from XML -> PHP -> XML, the comments are preserved.
+1. Add support for `<!-- comments -->` within the XML, such that when converting from XML -> PHP -> XML, the comments are preserved.
