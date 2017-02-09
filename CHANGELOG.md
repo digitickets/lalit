@@ -1,5 +1,9 @@
 # Version History
 
+**3.0** (2017/02/09)
+
+* Dropped support for PHP < 7.0
+
 **2.0** (2016/11/17)
 
 * Ownership transferred to Digitickets

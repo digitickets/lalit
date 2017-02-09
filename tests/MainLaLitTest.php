@@ -2,7 +2,7 @@
 
 namespace LaLit;
 
-class MainLaLitTest extends \PHPUnit_Framework_TestCase
+class MainLaLitTest extends \PHPUnit\Framework\TestCase
 {
     public function provideTestData()
     {

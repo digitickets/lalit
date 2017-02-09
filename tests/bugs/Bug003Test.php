@@ -5,7 +5,7 @@ namespace LaLit;
 /**
  * Class Bug003Test.
  */
-class Bug003Test extends \PHPUnit_Framework_TestCase
+class Bug003Test extends \PHPUnit\Framework\TestCase
 {
     public function testNullValues()
     {
@@ -48,6 +48,6 @@ class Bug003Test extends \PHPUnit_Framework_TestCase
 
 END_XML;
 
-        self::assertEquals($expectedResults, $actualResults, 'Failed to handle empty @values');
+        $this->assertEquals($expectedResults, $actualResults, 'Failed to handle empty @values');
     }
 }

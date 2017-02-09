@@ -2,7 +2,7 @@
 
 namespace LaLit;
 
-class Array2XMLTest extends \PHPUnit_Framework_TestCase
+class Array2XMLTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @expectedException \Exception

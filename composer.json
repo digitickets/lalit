@@ -23,8 +23,11 @@
       "LaLit\\": "src"
     }
   },
+  "require": {
+    "php": ">=7"
+  },
   "require-dev": {
-    "phpunit/phpunit": "^4|^5",
+    "phpunit/phpunit": "^6",
     "mockery/mockery": "^0"
   },
   "scripts": {

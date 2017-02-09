@@ -2,7 +2,7 @@
 
 namespace LaLit;
 
-class XML2ArrayTest extends \PHPUnit_Framework_TestCase
+class XML2ArrayTest extends \PHPUnit\Framework\TestCase
 {
     public function provideInvalidObjects()
     {
