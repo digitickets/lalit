@@ -32,6 +32,7 @@ function generateTags($tags)
     $cDataSet = [
         'Null value' => 'null',
         'Empty value' => '',
+        'Zero value' => '0',
         'Simple value' => 'normal',
         'Encoded value' => '&lt;escaped&gt;',
         'Empty CDATA' => '<![CDATA[]]>',
