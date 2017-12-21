@@ -1,5 +1,9 @@
 # Version History
 
+**3.0.1** (2017/12/21)
+
+* Zero values/cdata are now handled appropriately (Thank you Daniel Carl [#6](https://github.com/digitickets/lalit/pull/6))
+
 **3.0** (2017/02/09)
 
 * Dropped support for PHP < 7.0
