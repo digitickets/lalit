@@ -119,7 +119,7 @@ class XML2Array
                         $output[$t][] = $v;
                     } else {
                         //check if it is not an empty node
-                        if (!empty($v)) {
+                        if (!empty($v) || $v === '0') {
                             $output = $v;
                         }
                     }

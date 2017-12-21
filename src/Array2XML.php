@@ -37,9 +37,10 @@ class Array2XML
      * Convert an Array to XML.
      *
      * @param string $node_name - name of the root node to be converted
-     * @param array  $arr       - array to be converted
+     * @param array $arr - array to be converted
      *
      * @return DomDocument
+     * @throws Exception
      */
     public static function createXML($node_name, $arr = [])
     {
