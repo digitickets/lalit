@@ -3,6 +3,7 @@
 namespace LaLit;
 
 use DOMDocument;
+use DOMNamedNodeMap;
 use DOMNode;
 use Exception;
 
@@ -62,8 +63,23 @@ class XML2Array
         } else {
             throw new Exception('[XML2Array] Invalid input');
         }
+
+        // Bug 008 - Support <!DOCTYPE>.
+        $docType = $xml->doctype;
+        if ($docType) {
+            $array['@docType'] = [
+                'name' => $docType->name,
+                'entities' => self::getNamedNodeMapAsArray($docType->entities),
+                'notations' => self::getNamedNodeMapAsArray($docType->notations),
+                'publicId' => $docType->publicId,
+                'systemId' => $docType->systemId,
+                'internalSubset' => $docType->internalSubset,
+            ];
+        }
+
         $array[$xml->documentElement->tagName] = self::convert($xml->documentElement);
         self::$xml = null;    // clear the xml node in the class for 2nd time use.
+
         return $array;
     }
 
@@ -168,5 +184,22 @@ class XML2Array
         }
 
         return self::$xml;
+    }
+
+    /**
+     * @param DOMNamedNodeMap $namedNodeMap
+     *
+     * @return array|null
+     */
+    private static function getNamedNodeMapAsArray(DOMNamedNodeMap $namedNodeMap)
+    {
+        $result = null;
+        if ($namedNodeMap->length) {
+            foreach ($namedNodeMap as $key => $entity) {
+                $result[$key] = $entity;
+            }
+        }
+
+        return $result;
     }
 }

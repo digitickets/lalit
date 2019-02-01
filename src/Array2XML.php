@@ -3,6 +3,7 @@
 namespace LaLit;
 
 use DOMDocument;
+use DOMImplementation;
 use DOMNode;
 use Exception;
 
@@ -37,14 +38,28 @@ class Array2XML
      * Convert an Array to XML.
      *
      * @param string $node_name - name of the root node to be converted
-     * @param array $arr - array to be converted
+     * @param array  $arr       - array to be converted
+     * @param array  $docType   - optional docType
      *
      * @return DomDocument
      * @throws Exception
      */
-    public static function createXML($node_name, $arr = [])
+    public static function createXML($node_name, $arr = [], $docType = [])
     {
         $xml = self::getXMLRoot();
+
+        // BUG 008 - Support <!DOCTYPE>
+        if ($docType) {
+            $xml->appendChild(
+                (new DOMImplementation())
+                    ->createDocumentType(
+                        $docType['name'] ?? '',
+                        $docType['publicId'] ?? '',
+                        $docType['systemId'] ?? ''
+                    )
+            );
+        }
+
         $xml->appendChild(self::convert($node_name, $arr));
         self::$xml = null;    // clear the xml node in the class for 2nd time use.
 
