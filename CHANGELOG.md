@@ -1,5 +1,9 @@
 # Version History
 
+**3.1.0** (2019/02/01)
+
+* Limited support for <!DOCTYPE> (only PUBLIC and SYSTEM DTDs supported at the moment) (Thank you Nezabor [#8](https://github.com/digitickets/lalit/issues/8))
+
 **3.0.1** (2017/12/21)
 
 * Zero values/cdata are now handled appropriately (Thank you Daniel Carl [#6](https://github.com/digitickets/lalit/pull/6))
