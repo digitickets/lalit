@@ -4,14 +4,11 @@ sudo: false
 git:
   depth: 2
 
-before_script:
-  - composer self
-  - composer --version
-  - composer install -n
-
 matrix:
   include:
     - php: 7.0
+      env:
+        - COVERAGE=true
     - php: 7.1
     - php: 7.2
     - php: 7.3
@@ -26,7 +23,28 @@ matrix:
     - php: nightly
     - php: hhvm-3.9
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - source .travis/xdebug.sh
+  - xdebug-disable
+
+before_script:
+  - travis_retry composer update --no-interaction --prefer-source --prefer-stable
+
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+  - if [[ "$COVERAGE" == "true" ]]; then
+      xdebug-enable;
+      vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover;
+      xdebug-disable;
+    else
+      vendor/bin/phpunit;
+    fi
+
+after_script:
+  - if [[ "$COVERAGE" == "true" ]]; then
+      wget https://scrutinizer-ci.com/ocular.phar;
+      php ocular.phar code-coverage:upload --format=php-clover coverage.clover;
+    fi
