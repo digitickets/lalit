@@ -1,11 +1,31 @@
+language: php
 sudo: false
+
+git:
+  depth: 2
+
 before_script:
   - composer self
   - composer --version
   - composer install -n
-language: php
-php:
-  - 7
+
+matrix:
+  include:
+    - php: 7.0
+    - php: 7.1
+    - php: 7.2
+    - php: 7.3
+    - php: nightly
+    - php: hhvm-3.9
+      sudo: required
+      dist: trusty
+      group: edge
+
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+    - php: hhvm-3.9
+
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
