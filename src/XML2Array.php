@@ -100,7 +100,7 @@ class XML2Array
     }
 
     /**
-     * Convert an Array to XML.
+     * Convert an XML to an Array.
      *
      * @param DOMNode $node - XML as a string or as an object of DOMDocument
      *
