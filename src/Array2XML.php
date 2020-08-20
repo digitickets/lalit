@@ -83,6 +83,9 @@ class Array2XML
      * @param string $encoding
      * @param bool   $standalone
      * @param bool   $format_output
+     * @param string $cdata
+     * @param string $value
+     * @param string $attributes
      */
     public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output =true, $cdata = '@cdata', $value = '@value', $attributes = '@attributes')
     {
