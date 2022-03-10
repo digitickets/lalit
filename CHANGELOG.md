@@ -1,5 +1,9 @@
 # Version History
 
+**3.3.0** (2022/03/10)
+
+* Fix namespaced attributes (Thank you Nitin Patel and Mirko Temperini [#10](https://github.com/digitickets/lalit/issues/10))
+
 **3.2.0** (2022/03/10)
 
 * Allow alternative labels to be defined (Thank you Frank Aguirre [#16](https://github.com/digitickets/lalit/pull/16))

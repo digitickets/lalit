@@ -134,7 +134,7 @@ class XML2Array
                 if ($node->attributes->length) {
                     $a = [];
                     foreach ($node->attributes as $attrName => $attrNode) {
-                        $a[$attrName] = $attrNode->value;
+                        $a[$attrNode->nodeName] = $attrNode->value;
                     }
                     // if its an leaf node, store the value in @value instead of directly storing it.
                     if (!is_array($output)) {

@@ -84,8 +84,17 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
                 ],
                 VALID_TEST_FOR => ARRAY_TO_XML_ONLY,
             ],
+            'Namespaced attribute' => [
+                XML_CONTENT => ' xml:attribute7="namespaced"',
+                PHP_CONTENT => [
+                    '@attributes' => [
+                        'xml:attribute7' => 'namespaced',
+                    ],
+                ],
+                VALID_TEST_FOR => ARRAY_TO_XML_ONLY,
+            ],
             'All attributes' => [
-                XML_CONTENT => ' attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="\'&lt;important&gt;\'" attribute5="\'\'" attribute6=""',
+                XML_CONTENT => ' attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="\'&lt;important&gt;\'" attribute5="\'\'" attribute6="" xml:attribute7="namespaced"',
                 PHP_CONTENT => [
                     '@attributes' => [
                         'attribute1' => '',
@@ -94,12 +103,13 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
                         'attribute4' => '\'<important>\'',
                         'attribute5' => '\'\'',
                         'attribute6' => null, // A null in PHP will become an empty value in XML.
+                        'xml:attribute7' => 'namespaced',
                     ],
                 ],
                 VALID_TEST_FOR => ARRAY_TO_XML_ONLY,
             ],
             'All attributes without null attribute' => [
-                XML_CONTENT => ' attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="\'&lt;important&gt;\'" attribute5="\'\'"',
+                XML_CONTENT => ' attribute1="" attribute2="&lt;important&gt;" attribute3="1" attribute4="\'&lt;important&gt;\'" attribute5="\'\'" xml:attribute7="namespaced"',
                 PHP_CONTENT => [
                     '@attributes' => [
                         'attribute1' => '',
@@ -107,6 +117,7 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
                         'attribute3' => '1',
                         'attribute4' => '\'<important>\'',
                         'attribute5' => '\'\'',
+                        'xml:attribute7' => 'namespaced',
                     ],
                 ],
             ],
@@ -223,6 +234,7 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
         return array_merge(
             $this->generateTags(['root']),
             $this->generateTags(['root', 'node']),
+            $this->generateTags(['root', 'xml:namespaced_node']),
             $this->generateTags(['root', ['node', 2]]),
             $this->generateTags(['root', 'collection', ['node', 2]]),
             $this->generateTags(['root', ['collections', 2], ['node', 2]])
