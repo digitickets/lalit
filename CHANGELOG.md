@@ -1,6 +1,6 @@
 # Version History
 
-**Unreleased**
+**3.2.0** (2022/03/10)
 
 * Allow alternative labels to be defined (Thank you Frank Aguirre [#16](https://github.com/digitickets/lalit/pull/16))
 * Fix leading, embedded, and trailing newlines (no longer trims the data being).
