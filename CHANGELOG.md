@@ -1,5 +1,9 @@
 # Version History
 
+**Unreleased**
+
+* Allow alternative labels to be defined (Thank you Frank Aguirre [#16](https://github.com/digitickets/lalit/pull/16))
+
 **3.1.0** (2019/02/01)
 
 * Limited support for <!DOCTYPE> (only PUBLIC and SYSTEM DTDs supported at the moment) (Thank you Nezabor [#8](https://github.com/digitickets/lalit/issues/8))

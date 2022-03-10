@@ -1,6 +1,9 @@
 <?php
 
-namespace LaLit;
+namespace LaLitTests;
+
+use LaLit\Array2XML;
+use LaLit\XML2Array;
 
 define('XML_CONTENT', 'XmlContent');
 define('PHP_CONTENT', 'PhpContent');

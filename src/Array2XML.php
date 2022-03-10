@@ -24,22 +24,14 @@ use Exception;
  */
 class Array2XML
 {
-    /**
-     * @var string
-     */
-    private static $encoding = 'UTF-8';
-
-    /**
-     * @var DomDocument|null
-     */
-    private static $xml = null;
+    use InitTrait;
 
     /**
      * Convert an Array to XML.
      *
      * @param string $node_name - name of the root node to be converted
-     * @param array  $arr       - array to be converted
-     * @param array  $docType   - optional docType
+     * @param array $arr - array to be converted
+     * @param array $docType - optional docType
      *
      * @return DomDocument
      * @throws Exception
@@ -67,22 +59,6 @@ class Array2XML
     }
 
     /**
-     * Initialize the root XML node [optional].
-     *
-     * @param string $version
-     * @param string $encoding
-     * @param bool   $standalone
-     * @param bool   $format_output
-     */
-    public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output = true)
-    {
-        self::$xml = new DomDocument($version, $encoding);
-        self::$xml->xmlStandalone = $standalone;
-        self::$xml->formatOutput = $format_output;
-        self::$encoding = $encoding;
-    }
-
-    /**
      * Get string representation of boolean value.
      *
      * @param mixed $v
@@ -102,7 +78,7 @@ class Array2XML
      * Convert an Array to XML.
      *
      * @param string $node_name - name of the root node to be converted
-     * @param array  $arr       - array to be converted
+     * @param array $arr - array to be converted
      *
      * @return DOMNode
      *
@@ -116,26 +92,26 @@ class Array2XML
 
         if (is_array($arr)) {
             // get the attributes first.;
-            if (array_key_exists('@attributes', $arr) && is_array($arr['@attributes'])) {
-                foreach ($arr['@attributes'] as $key => $value) {
+            if (array_key_exists(self::$labelAttributes, $arr) && is_array($arr[self::$labelAttributes])) {
+                foreach ($arr[self::$labelAttributes] as $key => $value) {
                     if (!self::isValidTagName($key)) {
                         throw new Exception('[Array2XML] Illegal character in attribute name. attribute: '.$key.' in node: '.$node_name);
                     }
                     $node->setAttribute($key, self::bool2str($value));
                 }
-                unset($arr['@attributes']); //remove the key from the array once done.
+                unset($arr[self::$labelAttributes]); //remove the key from the array once done.
             }
 
             // check if it has a value stored in @value, if yes store the value and return
             // else check if its directly stored as string
-            if (array_key_exists('@value', $arr)) {
-                $node->appendChild($xml->createTextNode(self::bool2str($arr['@value'])));
-                unset($arr['@value']);    //remove the key from the array once done.
+            if (array_key_exists(self::$labelValue, $arr)) {
+                $node->appendChild($xml->createTextNode(self::bool2str($arr[self::$labelValue])));
+                unset($arr[self::$labelValue]);    //remove the key from the array once done.
                 //return from recursion, as a note with value cannot have child nodes.
                 return $node;
-            } elseif (array_key_exists('@cdata', $arr)) {
-                $node->appendChild($xml->createCDATASection(self::bool2str($arr['@cdata'])));
-                unset($arr['@cdata']);    //remove the key from the array once done.
+            } elseif (array_key_exists(self::$labelCData, $arr)) {
+                $node->appendChild($xml->createCDATASection(self::bool2str($arr[self::$labelCData])));
+                unset($arr[self::$labelCData]);    //remove the key from the array once done.
                 //return from recursion, as a note with cdata cannot have child nodes.
                 return $node;
             }

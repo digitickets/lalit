@@ -24,15 +24,7 @@ use Exception;
  */
 class XML2Array
 {
-    /**
-     * @var string
-     */
-    private static $encoding = 'UTF-8';
-
-    /**
-     * @var DOMDocument
-     */
-    private static $xml = null;
+    use InitTrait;
 
     /**
      * Convert an XML to Array.
@@ -43,7 +35,7 @@ class XML2Array
      *
      * @throws Exception
      */
-    public static function createArray($input_xml)
+    public static function createArray($input_xml): array
     {
         $xml = self::getXMLRoot();
         if (is_string($input_xml)) {
@@ -67,7 +59,7 @@ class XML2Array
         // Bug 008 - Support <!DOCTYPE>.
         $docType = $xml->doctype;
         if ($docType) {
-            $array['@docType'] = [
+            $array[self::$labelDocType] = [
                 'name' => $docType->name,
                 'entities' => self::getNamedNodeMapAsArray($docType->entities),
                 'notations' => self::getNamedNodeMapAsArray($docType->notations),
@@ -84,22 +76,6 @@ class XML2Array
     }
 
     /**
-     * Initialize the root XML node [optional].
-     *
-     * @param string $version
-     * @param string $encoding
-     * @param bool   $standalone
-     * @param bool   $format_output
-     */
-    public static function init($version = '1.0', $encoding = 'utf-8', $standalone = false, $format_output = true)
-    {
-        self::$xml = new DomDocument($version, $encoding);
-        self::$xml->xmlStandalone = $standalone;
-        self::$xml->formatOutput = $format_output;
-        self::$encoding = $encoding;
-    }
-
-    /**
      * Convert an XML to an Array.
      *
      * @param DOMNode $node - XML as a string or as an object of DOMDocument
@@ -112,7 +88,7 @@ class XML2Array
 
         switch ($node->nodeType) {
             case XML_CDATA_SECTION_NODE:
-                $output['@cdata'] = trim($node->textContent);
+                $output[self::$labelCData] = trim($node->textContent);
                 break;
 
             case XML_TEXT_NODE:
@@ -162,9 +138,9 @@ class XML2Array
                     }
                     // if its an leaf node, store the value in @value instead of directly storing it.
                     if (!is_array($output)) {
-                        $output = ['@value' => $output];
+                        $output = [self::$labelValue => $output];
                     }
-                    $output['@attributes'] = $a;
+                    $output[self::$labelAttributes] = $a;
                 }
                 break;
         }

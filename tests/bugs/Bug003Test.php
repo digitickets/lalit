@@ -1,6 +1,8 @@
 <?php
 
-namespace LaLit;
+namespace LaLitTests\Bugs;
+
+use LaLit\Array2XML;
 
 /**
  * Class Bug003Test.

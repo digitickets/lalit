@@ -23,6 +23,11 @@
       "LaLit\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "LaLitTests\\": "tests"
+    }
+  },
   "require": {
     "php": ">=7",
     "ext-dom": "*"

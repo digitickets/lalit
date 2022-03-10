@@ -20,6 +20,13 @@ Array2XML : http://www.lalit.org/lab/convert-php-array-to-xml-with-attributes/
 
 I've added additional unit tests via a generator (so probably too many tests)
 
+# Extended usage
+
+## Alternative labelling
+
+As of v3.2.0, the `init()` method has been expanded to allow the labels used in the output `XML2Array::createArray()` and
+the input to `Array2XML::createXML()` to be changed. Any value, where `null` is supplied will revert to the default value.
+
 # Version History
 
 Please read the [CHANGELOG](CHANGELOG.md) document.
