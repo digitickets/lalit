@@ -157,6 +157,18 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
                     '@cdata' => '<very_important>',
                 ],
             ],
+            'Leading, embedded, trailing tabs' => [
+                XML_CONTENT => '	Tab	Tab	',
+                PHP_CONTENT => [
+                    '@value' =>  '	Tab	Tab	',
+                ]
+            ],
+            'Leading, embedded, trailing newlines' => [
+                XML_CONTENT => PHP_EOL.'Tab'.PHP_EOL.'Tab'.PHP_EOL,
+                PHP_CONTENT => [
+                    '@value' => PHP_EOL.'Tab'.PHP_EOL.'Tab'.PHP_EOL,
+                ]
+            ]
         ];
 
         // If we have an array of tags, then generate the value for each tag and it to the value set.
@@ -226,8 +238,11 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
      */
     public function testArrayToXML($xml, $php, $structure, $validTestFor)
     {
-        $actualResults = preg_replace('`[\\n\\r]++ *`sim', '', Array2XML::createXML('root', $php['root'])->saveXML());
-        $expectedResults = '<?xml version="1.0" encoding="utf-8" standalone="no"?>'.$xml;
+        // We build the expected XML as a single line of text, but as we have embedded new lines in some elements, don't
+        // format the output which would then make additional structural changes.
+        Array2XML::init(null,null,null,false);
+        $actualResults = Array2XML::createXML('root', $php['root'])->saveXML();
+        $expectedResults = '<?xml version="1.0" encoding="utf-8" standalone="no"?>'.PHP_EOL.$xml.PHP_EOL;
 
         $this->assertEquals($expectedResults, $actualResults, $structure);
     }

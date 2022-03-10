@@ -3,6 +3,7 @@
 **Unreleased**
 
 * Allow alternative labels to be defined (Thank you Frank Aguirre [#16](https://github.com/digitickets/lalit/pull/16))
+* Fix leading, embedded, and trailing newlines (no longer trims the data being).
 
 **3.1.0** (2019/02/01)
 

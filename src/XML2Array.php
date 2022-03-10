@@ -87,15 +87,15 @@ class XML2Array
         $output = [];
 
         switch ($node->nodeType) {
-            case XML_CDATA_SECTION_NODE:
-                $output[self::$labelCData] = trim($node->textContent);
+            case XML_CDATA_SECTION_NODE: // 4
+                $output[self::$labelCData] = trim($node->textContent) ? $node->textContent : trim($node->textContent);
                 break;
 
-            case XML_TEXT_NODE:
-                $output = trim($node->textContent);
+            case XML_TEXT_NODE: // 3
+                $output = trim($node->textContent) ? $node->textContent : trim($node->textContent);
                 break;
 
-            case XML_ELEMENT_NODE:
+            case XML_ELEMENT_NODE: // 1
 
                 // for each child node, call the covert function recursively
                 for ($i = 0, $m = $node->childNodes->length; $i < $m; ++$i) {
