@@ -3,8 +3,10 @@
 namespace LaLit;
 
 use DOMDocument;
+use DOMException;
 use DOMNamedNodeMap;
 use DOMNode;
+use DOMXPath;
 use Exception;
 
 /**
@@ -39,16 +41,29 @@ class XML2Array
     {
         $xml = self::getXMLRoot();
         if (is_string($input_xml)) {
+            // Convert the "DOMDocument::loadXML(): Premature end of data in tag root line 1 in Entity, line: 1" to an
+            // DOMException
+            set_error_handler(
+                function ($errno, $errstr, $errfile, $errline) {
+                    if ($errno === E_WARNING && (strpos($errstr, 'DOMDocument::loadXML()') === 0)) {
+                        throw new DOMException($errstr);
+                    }
+
+                    return false;
+                }
+            );
             try {
                 $xml->loadXML($input_xml);
                 if (!is_object($xml) || empty($xml->documentElement)) {
                     throw new Exception();
                 }
+                restore_error_handler();
             } catch (Exception $ex) {
+                restore_error_handler();
                 throw new Exception('[XML2Array] Error parsing the XML string.'.PHP_EOL.$ex->getMessage());
             }
         } elseif (is_object($input_xml)) {
-            if (get_class($input_xml) != 'DOMDocument') {
+            if (get_class($input_xml) !== 'DOMDocument') {
                 throw new Exception('[XML2Array] The input XML object should be of type: DOMDocument.');
             }
             $xml = self::$xml = $input_xml;
@@ -69,8 +84,22 @@ class XML2Array
             ];
         }
 
-        $array[$xml->documentElement->tagName] = self::convert($xml->documentElement);
-        self::$xml = null;    // clear the xml node in the class for 2nd time use.
+        $rootNodeName = $xml->documentElement->tagName;
+        $array[$rootNodeName] = self::convert($xml->documentElement);
+
+        // Issue 020 - Support additional namespaces
+        $xpath = new DOMXPath($xml);
+        $namespaces = $xpath->query('namespace::*', $xml->documentElement);
+        if ($namespaces->length > 0) {
+            foreach ($namespaces as $namespace) {
+                if ($namespace->nodeName !== 'xmlns:xml') {
+                    $array[$rootNodeName][Constants::LABEL_ATTRIBUTES] = $array[$rootNodeName][Constants::LABEL_ATTRIBUTES] ?? [];
+                    $array[$rootNodeName][Constants::LABEL_ATTRIBUTES][$namespace->nodeName] = $namespace->nodeValue;
+                }
+            }
+        }
+
+        self::$xml = null; // clear the xml node in the class for 2nd time use.
 
         return $array;
     }
@@ -136,8 +165,9 @@ class XML2Array
                     foreach ($node->attributes as $attrName => $attrNode) {
                         $a[$attrNode->nodeName] = $attrNode->value;
                     }
-                    // if its an leaf node, store the value in @value instead of directly storing it.
+                    // if it's a leaf node, store the value in @value instead of directly storing it.
                     if (!is_array($output)) {
+                        // @TODO Better handling of empty values (<tag></tag>) and nulls (<tag />).
                         $output = [self::$labelValue => $output];
                     }
                     $output[self::$labelAttributes] = $a;
@@ -150,10 +180,8 @@ class XML2Array
 
     /**
      * Get the root XML node, if there isn't one, create it.
-     *
-     * @return DOMDocument
      */
-    private static function getXMLRoot()
+    private static function getXMLRoot(): DOMDocument
     {
         if (empty(self::$xml)) {
             self::init();
