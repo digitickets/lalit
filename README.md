@@ -1,7 +1,6 @@
 # LaLit's XML2Array / Array2XML
 
-[![Build Status](https://img.shields.io/travis/digitickets/lalit.svg?style=for-the-badge&logo=travis)](https://travis-ci.org/digitickets/lalit)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/digitickets/lalit.svg?style=for-the-badge&logo=scrutinizer)](https://scrutinizer-ci.com/g/digitickets/lalit/)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/digitickets/lalit/.github%2Fworkflows%2Ftest.yml?style=for-the-badge&logo=GitHub)](https://github.com/digitickets/lalit/actions)
 [![GitHub issues](https://img.shields.io/github/issues/digitickets/lalit.svg?style=for-the-badge&logo=github)](https://github.com/digitickets/lalit/issues)
 
 [![PHP Version](https://img.shields.io/packagist/php-v/digitickets/lalit.svg?style=for-the-badge)](https://github.com/digitickets/lalit)
