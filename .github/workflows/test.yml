@@ -1,0 +1,53 @@
+name: PHPUnit
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version:
+          - '7.0'
+          - '7.1'
+          - '7.2'
+          - '7.3'
+          - '7.4'
+          - '8.0'
+          - '8.1'
+          - '8.2'
+          - '8.3'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Install dependencies with Composer
+        uses: ramsey/composer-install@v3
+        with:
+          dependency-versions: highest
+
+      - name: Create PHPUnit results directory
+        run: mkdir -p test-results/phpunit
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --log-junit test-results/phpunit/junit_${{ matrix.php-version }}.xml
+
+      - name: Capture logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-${{ matrix.php-version }}
+          path: test-results/**/*
