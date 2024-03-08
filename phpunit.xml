@@ -3,8 +3,7 @@
         bootstrap="./tests/bootstrap.php"
         colors="true"
         columns="max"
-        verbose="true"
-        stoponfailure ="true"
+        stopOnFailure ="false"
 >
     <testsuite name="TypedArray">
         <directory>./tests</directory>
