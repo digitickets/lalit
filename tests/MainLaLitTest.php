@@ -2,33 +2,32 @@
 
 namespace LaLitTests;
 
+use DOMDocument;
+use Exception;
 use LaLit\Array2XML;
 use LaLit\XML2Array;
 
-define('XML_CONTENT', 'XmlContent');
-define('PHP_CONTENT', 'PhpContent');
-define('RESULTS_KEY', 'ResultsKey');
+
+define('XML_CONTENT', 'xmlContent');
+define('PHP_CONTENT', 'phpContent');
+define('VALID_TEST_FOR', 'validTestFor');
+
 define('ATTRIBUTE_CONTENT', 'AttributeContent');
 define('VALUE_CONTENT', 'ValueContent');
 define('CDATA_CONTENT', 'CDataContent');
 define('ARRAY_TO_XML_ONLY', 'Array2XMLOnly');
-define('VALID_TEST_FOR', 'ValidTestFor');
 define('ALL_TESTS', 'AllTests');
 
-class MainLaLitTest extends \PHPUnit\Framework\TestCase
+class MainLaLitTest extends TestCase
 {
     /**
-     * @param string|string[] $tags
+     * @param string[] $tags
      *
      * @return array
      */
-    private function generateTags($tags)
+    private static function generateTags(array $tags): array
     {
-        if (is_array($tags)) {
-            $tag = array_shift($tags);
-        } else {
-            $tag = $tags;
-        }
+        $tag = array_shift($tags);
 
         // Base attribute set.
         $attributeSet = [
@@ -184,7 +183,7 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
 
         // If we have an array of tags, then generate the value for each tag and it to the value set.
         if (is_array($tags) && count($tags) > 0) {
-            $valueSet = array_merge($valueSet, $this->generateTags($tags));
+            $valueSet = array_merge($valueSet, self::generateTags($tags));
         }
 
         // Build a result set.
@@ -221,65 +220,57 @@ class MainLaLitTest extends \PHPUnit\Framework\TestCase
                         $results[$resultsKey][PHP_CONTENT][$tagName][] = $phpContent;
                     }
                 }
-                $results[$resultsKey][RESULTS_KEY] = $resultsKey;
-                $results[$resultsKey][VALID_TEST_FOR] = $results[$resultsKey][VALID_TEST_FOR] ?? ALL_TESTS;
+                $results[$resultsKey][VALID_TEST_FOR] = sprintf('%s - %s', $resultsKey, ($results[$resultsKey][VALID_TEST_FOR] ?? ALL_TESTS));
             }
         }
 
         return $results;
     }
 
-    public function provideTestData()
+    public static function provideTestData(): array
     {
         return array_merge(
-            $this->generateTags(['root']),
-            $this->generateTags(['root', 'node']),
-            $this->generateTags(['root', 'xml:namespaced_node']),
-            $this->generateTags(['root', ['node', 2]]),
-            $this->generateTags(['root', 'collection', ['node', 2]]),
-            $this->generateTags(['root', ['collections', 2], ['node', 2]])
+            self::generateTags(['root']),
+            self::generateTags(['root', 'node']),
+            self::generateTags(['root', 'xml:namespaced_node']),
+            self::generateTags(['root', ['node', 2]]),
+            self::generateTags(['root', 'collection', ['node', 2]]),
+            self::generateTags(['root', ['collections', 2], ['node', 2]])
         );
     }
 
     /**
      * @dataProvider provideTestData
-     *
-     * @param string $xml
-     * @param string $php
-     * @param string $structure
      */
-    public function testArrayToXML($xml, $php, $structure, $validTestFor)
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideTestData')]
+    public function testArrayToXML(string $xmlContent, $phpContent, string $validTestFor)
     {
         // We build the expected XML as a single line of text, but as we have embedded new lines in some elements, don't
         // format the output which would then make additional structural changes.
         Array2XML::init(null,null,null,false);
-        $actualResults = Array2XML::createXML('root', $php['root'])->saveXML();
-        $expectedResults = '<?xml version="1.0" encoding="utf-8" standalone="no"?>'.PHP_EOL.$xml.PHP_EOL;
+        $actualResults = Array2XML::createXML('root', $phpContent['root'])->saveXML();
+        $expectedResults = '<?xml version="1.0" encoding="utf-8" standalone="no"?>'.PHP_EOL.$xmlContent.PHP_EOL;
 
-        $this->assertEquals($expectedResults, $actualResults, $structure);
+        $this->assertEquals($expectedResults, $actualResults, $validTestFor);
     }
 
     /**
      * @dataProvider provideTestData
-     *
-     * @param string $xml
-     * @param string $php
-     * @param string $structure
-     *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function testXMLToArray($xml, $php, $structure, $validTestFor)
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideTestData')]
+    public function testXMLToArray(string $xmlContent, $phpContent, string $validTestFor)
     {
-        $xmlDOM = new \DOMDocument(1.0, 'UTF-8');
+        $xmlDOM = new DOMDocument(1.0, 'UTF-8');
         $xmlDOM->xmlStandalone = false;
         $xmlDOM->preserveWhiteSpace = false;
-        $xmlDOM->loadXML($xml);
+        $xmlDOM->loadXML($xmlContent);
         $xmlDOM->formatOutput = true;
 
-        $xmlStringResults = XML2Array::createArray($xml);
+        $xmlStringResults = XML2Array::createArray($xmlContent);
         $xmlDOMResults = XML2Array::createArray($xmlDOM);
 
-        $this->assertEquals($php, $xmlStringResults, $structure);
-        $this->assertEquals($php, $xmlDOMResults, $structure);
+        $this->assertEquals($phpContent, $xmlStringResults, $validTestFor);
+        $this->assertEquals($phpContent, $xmlDOMResults, $validTestFor);
     }
 }

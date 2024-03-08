@@ -9,20 +9,15 @@ use PHPUnit\Framework\TestCase;
 class Pr016Test extends TestCase
 {
     /**
-     * @param array $data
-     * @param string|null $labelAttributes
-     * @param string|null $labelCData
-     * @param string|null $labelDocType
-     * @param string|null $labelValue
-     *
      * @dataProvider provideLabels
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideLabels')]
     public function testLabels(
         array $data,
-        string $labelAttributes = null,
-        string $labelCData = null,
-        string $labelDocType = null,
-        string $labelValue = null
+        string $attributesLabel = null,
+        string $cdataLabel = null,
+        string $docTypeLabel = null,
+        string $valueLabel = null
     ) {
         $xml = <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -49,20 +44,20 @@ END_XML;
             null,
             null,
             null,
-            $labelAttributes,
-            $labelCData,
-            $labelDocType,
-            $labelValue
+            $attributesLabel,
+            $cdataLabel,
+            $docTypeLabel,
+            $valueLabel
         );
         XML2Array::init(
             null,
             null,
             null,
             null,
-            $labelAttributes,
-            $labelCData,
-            $labelDocType,
-            $labelValue
+            $attributesLabel,
+            $cdataLabel,
+            $docTypeLabel,
+            $valueLabel
         );
 
         // Convert the known XML to an array and compare with supplied data.
@@ -74,7 +69,7 @@ END_XML;
         $this->assertEquals($xml, $resultsFromArray2XmlCreateXml);
     }
 
-    public function provideLabels()
+    public static function provideLabels(): array
     {
         return [
             'Normal labels' => [

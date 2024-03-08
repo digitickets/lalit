@@ -3,11 +3,12 @@
 namespace LaLitTests\Bugs;
 
 use LaLit\Array2XML;
+use LaLitTests\TestCase;
 
 /**
  * Class Bug003Test.
  */
-class Bug003Test extends \PHPUnit\Framework\TestCase
+class Bug003Test extends TestCase
 {
     public function testNullValues()
     {

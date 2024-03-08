@@ -2,22 +2,22 @@
 
 namespace LaLitTests\Bugs;
 
+use Exception;
 use LaLit\Array2XML;
 use LaLit\XML2Array;
+use LaLitTests\TestCase;
 
 /**
  * Class Bug0088Test.
  */
-class Bug008Test extends \PHPUnit\Framework\TestCase
+class Bug008Test extends TestCase
 {
     /**
-     * @param string $xml
-     * @param array $array
-     *
-     * @throws \Exception
+     * @throws Exception
      *
      * @dataProvider provideDataForRootAttributesAndDocTypes
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideDataForRootAttributesAndDocTypes')]
     public function testRootAttributesAndDocTypes(string $xml, array $array)
     {
         $actualXMLResults = Array2XML::createXML('root', $array['root'] ?? [], $array['@docType'] ?? [])->saveXML();
@@ -27,7 +27,7 @@ class Bug008Test extends \PHPUnit\Framework\TestCase
         $this->assertEquals($array, $actualArrayResults, '');
     }
 
-    public function provideDataForRootAttributesAndDocTypes()
+    public static function provideDataForRootAttributesAndDocTypes(): array
     {
         return
             [

@@ -4,7 +4,7 @@ namespace LaLitTests\Bugs;
 
 use LaLit\Array2XML;
 use LaLit\XML2Array;
-use PHPUnit\Framework\TestCase;
+use LaLitTests\TestCase;
 
 /**
  * Class Bug018Test.
@@ -15,7 +15,7 @@ class Bug018Test extends TestCase
     {
         $xml = str_replace(
             ['>>0A<<', '>>0D<<'],
-            ["\x0a", "\x0d"],
+            [chr(10), chr(13)],
             <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE root PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,7 +52,7 @@ END_XML
                 'container' => [
                     'newline_and_tabs' => str_replace(
                         ['>>0A<<', '>>0D<<'],
-                        ["\x0a", "\x0d"],
+                        [chr(10), chr(13)],
                         '
       description 1>>0A<<with embedded x0a
       description 2>>0D<<with embedded x0d
@@ -62,7 +62,7 @@ END_XML
                     'newline_and_tabs_cdata' => [
                         '@cdata' => str_replace(
                             ['>>0A<<', '>>0D<<'],
-                            ["\x0a", "\x0d"],
+                            [chr(10), chr(13)],
                             '
       description 1>>0A<<with embedded x0a
       description 2>>0D<<with embedded x0d
@@ -76,7 +76,7 @@ END_XML
 
         $html = str_replace(
             ['>>0A<<', '>>0D<<'],
-            ["\x0a", "\x0d"],
+            [chr(10), chr(13)],
             <<< 'END_HTML'
 <root><container><newline_and_tabs>
       description 1>>0A<<with embedded x0a
@@ -102,11 +102,14 @@ END_HTML
 
         // Compare the generated values with the originals.
 
-        // HTML allows \r and \n, so no amendments to the generatedHtml needed for the comparison.
-        $this->assertEquals($html, $generatedHtml);
-
-        // XML does NOT allow \r and outputs &#13; instead.
-        $this->assertEquals($xml, str_replace('&#13;', "\r", $generatedXml));
+        // Oddities by OS.
+        if (PHP_OS === 'Darwin') {
+            $this->assertEquals($html, $generatedHtml, 'HTML does not match');
+            $this->assertEquals($xml, str_replace('&#13;', chr(13), $generatedXml), 'XML does not match');
+        } else {
+            $this->assertEquals($html, str_replace('&#13;', chr(13), $generatedHtml), 'HTML does not match');
+            $this->assertEquals($xml, str_replace('&#13;', chr(13), $generatedXml), 'XML does not match');
+        }
 
         // PHP read \r but then converted it \n, convert the \r to \n in the original data.
         $array['root']['container']['newline_and_tabs'] = str_replace(

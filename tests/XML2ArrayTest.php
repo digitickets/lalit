@@ -2,18 +2,21 @@
 
 namespace LaLitTests;
 
+use Exception;
 use LaLit\XML2Array;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use stdClass;
 
-class XML2ArrayTest extends \PHPUnit\Framework\TestCase
+class XML2ArrayTest extends PHPUnitTestCase
 {
-    public function provideInvalidObjects()
+    public static function provideInvalidObjects(): array
     {
         return [
-            [new \stdClass()],
+            [new stdClass()],
         ];
     }
 
-    public function provideInvalidTypes()
+    public static function provideInvalidTypes(): array
     {
         return [
             [0],
@@ -24,7 +27,7 @@ class XML2ArrayTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    public function provideInvalidXML()
+    public static function provideInvalidXML(): array
     {
         return [
             ['<?xml version="1.0" encoding="UTF-8"?><root>'],
@@ -35,39 +38,42 @@ class XML2ArrayTest extends \PHPUnit\Framework\TestCase
     /**
      * @param object $invalidObject
      *
-     * @throws \Exception
-     * @expectedException \Exception
-     * @expectedExceptionMessage [XML2Array] The input XML object should be of type: DOMDocument.
+     * @throws Exception
      * @dataProvider provideInvalidObjects
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideInvalidObjects')]
     public function testXMLFileToArrayRejectsInvalidObjects($invalidObject)
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('[XML2Array] The input XML object should be of type: DOMDocument.');
         XML2Array::createArray($invalidObject);
     }
 
     /**
      * @param mixed $invalidType
      *
-     * @throws \Exception
-     * @expectedException \Exception
-     * @expectedExceptionMessage [XML2Array] Invalid input
+     * @throws Exception
      * @dataProvider provideInvalidTypes
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideInvalidTypes')]
     public function testXMLFileToArrayRejectsInvalidTypes($invalidType)
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('[XML2Array] Invalid input');
         XML2Array::createArray($invalidType);
     }
 
     /**
      * @param string $invalidXML
      *
-     * @throws \Exception
-     * @expectedException \Exception
-     * @expectedExceptionMessage [XML2Array] Error parsing the XML string.
+     * @throws Exception
      * @dataProvider provideInvalidXML
      */
-    public function testXMLFileToArrayRejectsInvalidXML($invalidXML)
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideInvalidXML')]
+    public function testXMLFileToArrayRejectsInvalidXML(string $invalidXML)
     {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('[XML2Array] Error parsing the XML string.');
         XML2Array::createArray($invalidXML);
     }
 }
