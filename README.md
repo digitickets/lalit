@@ -10,14 +10,25 @@
 [![Monthly Downloads](https://img.shields.io/packagist/dm/digitickets/lalit.svg?style=for-the-badge&label=Monthly+downloads)](https://packagist.org/packages/digitickets/lalit)
 [![Daily Downloads](https://img.shields.io/packagist/dd/digitickets/lalit.svg?style=for-the-badge&label=Daily+downloads)](https://packagist.org/packages/digitickets/lalit)
 
-`\digitickets\LaLit` allows you to convert XML to a PHP array and back again.
+`LaLit` allows you to convert XML to a PHP array and back again.
 
-The base code was developed by Lalit Patel and is available from http://www.lalit.org/lab/
+The base code was developed by Lalit Patel and *was* available from http://www.lalit.org/lab/
 
-XML2Array : http://www.lalit.org/lab/convert-xml-to-array-in-php-xml2array/
-Array2XML : http://www.lalit.org/lab/convert-php-array-to-xml-with-attributes/
+From around May 7th 2018, the original site is not available.
+
+The Internet Archive copies are mentioned below.
+
+The original code was in the initial commit and all subsequent work has been carried out by me (Richard Quadling) and the
+contributors. Hopefully I've mentioned them all in the [CHANGELOG.md](CHANGELOG.md).
+
+XML2Array : [Original page](http://www.lalit.org/lab/convert-xml-to-array-in-php-xml2array/) /
+            [Internet Archive](https://web.archive.org/web/20180430042542/www.lalit.org/lab/convert-xml-to-array-in-php-xml2array).
+
+Array2XML : [Original page](http://www.lalit.org/lab/convert-php-array-to-xml-with-attributes/) /
+            [Internet Archive](https://web.archive.org/web/20180507121143/www.lalit.org/lab/convert-php-array-to-xml-with-attributes).
 
 I've added additional unit tests via a generator (so probably too many tests)
+
 
 # Extended usage
 
