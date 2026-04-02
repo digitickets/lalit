@@ -10,33 +10,33 @@ use LaLitTests\TestCase;
  */
 class Bug003Test extends TestCase
 {
-    public function testNullValues()
-    {
-        $array = [
-            'container' => [
-                'item' => [
-                    'term' => 'description',
-                    'label' => null,
-                    'emptyCData' => [
-                        '@cdata' => null,
-                    ],
-                    '@attributes' => [
-                        'present' => 'none',
-                    ],
-                    'node' => [
-                        '@attributes' => [
-                            'present' => 'years',
-                            'empty' => null,
-                        ],
-                        '@value' => null,
-                    ],
-                ],
+  public function testNullValues()
+  {
+    $array = [
+      'container' => [
+        'item' => [
+          'term' => 'description',
+          'label' => null,
+          'emptyCData' => [
+            '@cdata' => null,
+          ],
+          '@attributes' => [
+            'present' => 'none',
+          ],
+          'node' => [
+            '@attributes' => [
+              'present' => 'years',
+              'empty' => null,
             ],
-        ];
+            '@value' => null,
+          ],
+        ],
+      ],
+    ];
 
-        $actualResults = Array2XML::createXML('root', $array)->saveXML();
+    $actualResults = Array2XML::createXML('root', $array)->saveXML();
 
-        $expectedResults = <<< 'END_XML'
+    $expectedResults = <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <root>
   <container>
@@ -51,6 +51,6 @@ class Bug003Test extends TestCase
 
 END_XML;
 
-        $this->assertEquals($expectedResults, $actualResults, 'Failed to handle empty @values');
-    }
+    $this->assertEquals($expectedResults, $actualResults, 'Failed to handle empty @values');
+  }
 }

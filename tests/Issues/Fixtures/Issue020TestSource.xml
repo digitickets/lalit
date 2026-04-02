@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dpi:DPI_OECD xmlns:dpi="urn:oecd:ties:dpi:v1"  xmlns:stf="urn:oecd:ties:dpistf:v1"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1">
+    <dpi:MessageSpec>
+        <dpi:TransmittingCountry>IE</dpi:TransmittingCountry>
+        <dpi:ReceivingCountry>IE</dpi:ReceivingCountry>
+        <dpi:MessageType>DPI</dpi:MessageType>
+        <dpi:MessageRefId>UNIQUENUMBER123</dpi:MessageRefId>
+        <dpi:MessageTypeIndic>DPI401</dpi:MessageTypeIndic>
+        <dpi:ReportingPeriod>2023-12-31</dpi:ReportingPeriod>
+        <dpi:Timestamp>2024-02-28T00:00:00.000</dpi:Timestamp>
+    </dpi:MessageSpec>
+    <dpi:DPIBody>
+        <dpi:PlatformOperator>
+            <dpi:ResCountryCode>IE</dpi:ResCountryCode>
+            <dpi:TIN issuedBy="IE">1234567CTINEXAMPLE</dpi:TIN>
+            <dpi:IN issuedBy="IE" INType="IIN">1234567INEXAMPLE</dpi:IN>
+            <dpi:Name>Name company</dpi:Name>
+            <dpi:PlatformBusinessName>Platform Company Name</dpi:PlatformBusinessName>
+            <dpi:Address legalAddressType="OECD304">
+                <dpi:CountryCode>TR</dpi:CountryCode>
+                <dpi:AddressFree>Address 1</dpi:AddressFree>
+            </dpi:Address>
+            <dpi:AssumedReporting>false</dpi:AssumedReporting>
+            <dpi:DocSpec>
+                <stf:DocTypeIndic>OECD1</stf:DocTypeIndic>
+                <stf:DocRefId>UNIQUEDOCREFID1</stf:DocRefId>
+            </dpi:DocSpec>
+        </dpi:PlatformOperator>
+        <dpi:OtherPlatformOperators>
+            <dpi:AssumedPlatformOperator>
+                <dpi:ResCountryCode>IE</dpi:ResCountryCode>
+                <dpi:TIN issuedBy="IE">1234567DTINEXAMPLE</dpi:TIN>
+                <dpi:Name>Name</dpi:Name>
+                <dpi:Address legalAddressType="OECD303">
+                    <dpi:CountryCode>IE</dpi:CountryCode>
+                    <dpi:AddressFree>Address 5</dpi:AddressFree>
+                </dpi:Address>
+                <dpi:DocSpec>
+                    <stf:DocTypeIndic>OECD1</stf:DocTypeIndic>
+                    <stf:DocRefId>UNIQUEDOCREFID2</stf:DocRefId>
+                </dpi:DocSpec>
+            </dpi:AssumedPlatformOperator>
+        </dpi:OtherPlatformOperators>
+        <dpi:ReportableSeller>
+            <dpi:Identity>
+                <dpi:EntitySeller>
+                    <dpi:Standard>
+                        <dpi:EntSellerID>
+                            <dpi:ResCountryCode>DE</dpi:ResCountryCode>
+                            <dpi:TIN issuedBy="DE">1234567DTINEXAMPLE</dpi:TIN>
+                            <dpi:IN issuedBy="DE" INType="BRN">1234567INEXAMPLE</dpi:IN>
+                            <dpi:VAT>DE7123456EXAMPLE</dpi:VAT>
+                            <dpi:Name>Name 1</dpi:Name>
+                            <dpi:Address legalAddressType="OECD301">
+                                <dpi:CountryCode>DE</dpi:CountryCode>
+                                <dpi:AddressFree>Address 2</dpi:AddressFree>
+                            </dpi:Address>
+                        </dpi:EntSellerID>
+                        <dpi:FinancialIdentifier>
+                            <dpi:Identifier AccountNumberType="IBAN">DE1234567890123456EXAMPLE</dpi:Identifier>
+                            <dpi:AccountHolderName>Account Holder Name</dpi:AccountHolderName>
+                        </dpi:FinancialIdentifier>
+                        <dpi:PermanentEstablishments>
+                            <dpi:PermanentEstablishment>DE</dpi:PermanentEstablishment>
+                        </dpi:PermanentEstablishments>
+                    </dpi:Standard>
+                </dpi:EntitySeller>
+            </dpi:Identity>
+            <dpi:RelevantActivities>
+                <dpi:ImmovableProperty>
+                    <dpi:PropertyListing>
+                        <dpi:Address legalAddressType="OECD302">
+                            <dpi:CountryCode>IE</dpi:CountryCode>
+                            <dpi:AddressFree>Address 3</dpi:AddressFree>
+                        </dpi:Address>
+                        <dpi:LandRegistrationNumber>ABC123456</dpi:LandRegistrationNumber>
+                        <dpi:Consideration>
+                            <dpi:ConsQ1 currCode="EUR">1000</dpi:ConsQ1>
+                            <dpi:ConsQ2 currCode="EUR">2000</dpi:ConsQ2>
+                            <dpi:ConsQ3 currCode="EUR">3000</dpi:ConsQ3>
+                            <dpi:ConsQ4 currCode="EUR">4000</dpi:ConsQ4>
+                        </dpi:Consideration>
+                        <dpi:NumberOfActivities>
+                            <dpi:NumbQ1>10</dpi:NumbQ1>
+                            <dpi:NumbQ2>15</dpi:NumbQ2>
+                            <dpi:NumbQ3>20</dpi:NumbQ3>
+                            <dpi:NumbQ4>25</dpi:NumbQ4>
+                        </dpi:NumberOfActivities>
+                        <dpi:Fees>
+                            <dpi:FeesQ1 currCode="EUR">100</dpi:FeesQ1>
+                            <dpi:FeesQ2 currCode="EUR">200</dpi:FeesQ2>
+                            <dpi:FeesQ3 currCode="EUR">300</dpi:FeesQ3>
+                            <dpi:FeesQ4 currCode="EUR">400</dpi:FeesQ4>
+                        </dpi:Fees>
+                        <dpi:Taxes>
+                            <dpi:TaxQ1 currCode="EUR">100</dpi:TaxQ1>
+                            <dpi:TaxQ2 currCode="EUR">200</dpi:TaxQ2>
+                            <dpi:TaxQ3 currCode="EUR">300</dpi:TaxQ3>
+                            <dpi:TaxQ4 currCode="EUR">400</dpi:TaxQ4>
+                        </dpi:Taxes>
+                        <dpi:PropertyType>DPI904</dpi:PropertyType>
+                        <dpi:RentedDays>79</dpi:RentedDays>
+                    </dpi:PropertyListing>
+                </dpi:ImmovableProperty>
+                <dpi:PersonalServices>
+                    <dpi:Consideration>
+                        <dpi:ConsQ1 currCode="EUR">20000</dpi:ConsQ1>
+                        <dpi:ConsQ2 currCode="EUR">20000</dpi:ConsQ2>
+                        <dpi:ConsQ3 currCode="EUR">20000</dpi:ConsQ3>
+                        <dpi:ConsQ4 currCode="EUR">20000</dpi:ConsQ4>
+                    </dpi:Consideration>
+                    <dpi:NumberOfActivities>
+                        <dpi:NumbQ1>20</dpi:NumbQ1>
+                        <dpi:NumbQ2>20</dpi:NumbQ2>
+                        <dpi:NumbQ3>20</dpi:NumbQ3>
+                        <dpi:NumbQ4>20</dpi:NumbQ4>
+                    </dpi:NumberOfActivities>
+                    <dpi:Fees>
+                        <dpi:FeesQ1 currCode="EUR">1000</dpi:FeesQ1>
+                        <dpi:FeesQ2 currCode="EUR">1500</dpi:FeesQ2>
+                        <dpi:FeesQ3 currCode="EUR">2000</dpi:FeesQ3>
+                        <dpi:FeesQ4 currCode="EUR">2000</dpi:FeesQ4>
+                    </dpi:Fees>
+                    <dpi:Taxes>
+                        <dpi:TaxQ1 currCode="EUR">1000</dpi:TaxQ1>
+                        <dpi:TaxQ2 currCode="EUR">1500</dpi:TaxQ2>
+                        <dpi:TaxQ3 currCode="EUR">2000</dpi:TaxQ3>
+                        <dpi:TaxQ4 currCode="EUR">2500</dpi:TaxQ4>
+                    </dpi:Taxes>
+                </dpi:PersonalServices>
+                <dpi:TransportationRental>
+                    <dpi:Consideration>
+                        <dpi:ConsQ1 currCode="EUR">1500</dpi:ConsQ1>
+                        <dpi:ConsQ2 currCode="EUR">1500</dpi:ConsQ2>
+                        <dpi:ConsQ3 currCode="EUR">1500</dpi:ConsQ3>
+                        <dpi:ConsQ4 currCode="EUR">1500</dpi:ConsQ4>
+                    </dpi:Consideration>
+                    <dpi:NumberOfActivities>
+                        <dpi:NumbQ1>20</dpi:NumbQ1>
+                        <dpi:NumbQ2>20</dpi:NumbQ2>
+                        <dpi:NumbQ3>20</dpi:NumbQ3>
+                        <dpi:NumbQ4>20</dpi:NumbQ4>
+                    </dpi:NumberOfActivities>
+                    <dpi:Fees>
+                        <dpi:FeesQ1 currCode="EUR">1000</dpi:FeesQ1>
+                        <dpi:FeesQ2 currCode="EUR">1500</dpi:FeesQ2>
+                        <dpi:FeesQ3 currCode="EUR">2000</dpi:FeesQ3>
+                        <dpi:FeesQ4 currCode="EUR">2000</dpi:FeesQ4>
+                    </dpi:Fees>
+                    <dpi:Taxes>
+                        <dpi:TaxQ1 currCode="EUR">1000</dpi:TaxQ1>
+                        <dpi:TaxQ2 currCode="EUR">1500</dpi:TaxQ2>
+                        <dpi:TaxQ3 currCode="EUR">2000</dpi:TaxQ3>
+                        <dpi:TaxQ4 currCode="EUR">2500</dpi:TaxQ4>
+                    </dpi:Taxes>
+                </dpi:TransportationRental>
+            </dpi:RelevantActivities>
+            <dpi:DocSpec>
+                <stf:DocTypeIndic>OECD1</stf:DocTypeIndic>
+                <stf:DocRefId>UNIQUEDOCREFID3</stf:DocRefId>
+            </dpi:DocSpec>
+        </dpi:ReportableSeller>
+        <dpi:ReportableSeller>
+            <dpi:Identity>
+                <dpi:IndividualSeller>
+                    <dpi:Standard>
+                        <dpi:IndSellerID>
+                            <dpi:ResCountryCode>IE</dpi:ResCountryCode>
+                            <dpi:TIN unknown="true"/>
+                            <dpi:Name>
+                                <dpi:FirstName>First Name</dpi:FirstName>
+                                <dpi:LastName>Last Name</dpi:LastName>
+                            </dpi:Name>
+                            <dpi:Address legalAddressType="OECD303">
+                                <dpi:CountryCode>IE</dpi:CountryCode>
+                                <dpi:AddressFree>Address 4</dpi:AddressFree>
+                            </dpi:Address>
+                            <dpi:BirthInfo>
+                                <dpi:BirthDate>1995-11-21</dpi:BirthDate>
+                                <dpi:BirthPlace>
+                                    <dpi:City>City</dpi:City>
+                                    <dpi:CountryInfo>
+                                        <dpi:CountryCode>DE</dpi:CountryCode>
+                                    </dpi:CountryInfo>
+                                </dpi:BirthPlace>
+                            </dpi:BirthInfo>
+                        </dpi:IndSellerID>
+                        <dpi:FinancialIdentifier>
+                            <dpi:Identifier AccountNumberType="IBAN">DE1234567890123456EXAMPLE</dpi:Identifier>
+                            <dpi:AccountHolderName>Account Holder Name 2</dpi:AccountHolderName>
+                        </dpi:FinancialIdentifier>
+                    </dpi:Standard>
+                </dpi:IndividualSeller>
+            </dpi:Identity>
+            <dpi:RelevantActivities>
+                <dpi:SaleOfGoods>
+                    <dpi:Consideration>
+                        <dpi:ConsQ1 currCode="EUR">365</dpi:ConsQ1>
+                        <dpi:ConsQ2 currCode="EUR">0</dpi:ConsQ2>
+                        <dpi:ConsQ3 currCode="EUR">0</dpi:ConsQ3>
+                        <dpi:ConsQ4 currCode="EUR">0</dpi:ConsQ4>
+                    </dpi:Consideration>
+                    <dpi:NumberOfActivities>
+                        <dpi:NumbQ1>10</dpi:NumbQ1>
+                        <dpi:NumbQ2>0</dpi:NumbQ2>
+                        <dpi:NumbQ3>0</dpi:NumbQ3>
+                        <dpi:NumbQ4>0</dpi:NumbQ4>
+                    </dpi:NumberOfActivities>
+                    <dpi:Fees>
+                        <dpi:FeesQ1 currCode="EUR">50</dpi:FeesQ1>
+                        <dpi:FeesQ2 currCode="EUR">0</dpi:FeesQ2>
+                        <dpi:FeesQ3 currCode="EUR">0</dpi:FeesQ3>
+                        <dpi:FeesQ4 currCode="EUR">0</dpi:FeesQ4>
+                    </dpi:Fees>
+                    <dpi:Taxes>
+                        <dpi:TaxQ1 currCode="EUR">40</dpi:TaxQ1>
+                        <dpi:TaxQ2 currCode="EUR">0</dpi:TaxQ2>
+                        <dpi:TaxQ3 currCode="EUR">0</dpi:TaxQ3>
+                        <dpi:TaxQ4 currCode="EUR">0</dpi:TaxQ4>
+                    </dpi:Taxes>
+                </dpi:SaleOfGoods>
+            </dpi:RelevantActivities>
+            <dpi:DocSpec>
+                <stf:DocTypeIndic>OECD1</stf:DocTypeIndic>
+                <stf:DocRefId>UNIQUEDOCREFID4</stf:DocRefId>
+            </dpi:DocSpec>
+        </dpi:ReportableSeller>
+    </dpi:DPIBody>
+</dpi:DPI_OECD>

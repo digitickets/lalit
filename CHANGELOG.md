@@ -1,5 +1,10 @@
 # Version History
 
+## 3.4.1 - 2026/04/02
+
+- Fixed checking of values against the FULL list as defined in https://www.w3.org/TR/xml/#NT-Char. (Thank you Makar
+  Mikhalchenko [#22](https://github.com/digitickets/lalit/issues/22)).
+
 ## 3.4.0 - 2024/03/08
 
 - Removed Scrutinzer, Stickler, and TravisCI configurations.

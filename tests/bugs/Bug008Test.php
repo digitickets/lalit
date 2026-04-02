@@ -6,33 +6,19 @@ use Exception;
 use LaLit\Array2XML;
 use LaLit\XML2Array;
 use LaLitTests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Class Bug0088Test.
  */
 class Bug008Test extends TestCase
 {
-    /**
-     * @throws Exception
-     *
-     * @dataProvider provideDataForRootAttributesAndDocTypes
-     */
-    #[\PHPUnit\Framework\Attributes\DataProvider('provideDataForRootAttributesAndDocTypes')]
-    public function testRootAttributesAndDocTypes(string $xml, array $array)
-    {
-        $actualXMLResults = Array2XML::createXML('root', $array['root'] ?? [], $array['@docType'] ?? [])->saveXML();
-        $actualArrayResults = XML2Array::createArray($xml);
-
-        $this->assertEquals($xml, $actualXMLResults, '');
-        $this->assertEquals($array, $actualArrayResults, '');
-    }
-
-    public static function provideDataForRootAttributesAndDocTypes(): array
-    {
-        return
-            [
-                'Public DTD' => [
-                    'xml' => <<< 'END_XML'
+  public static function provideDataForRootAttributesAndDocTypes(): array
+  {
+    return
+      [
+        'Public DTD' => [
+          'xml' => <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE root PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <root root_attribute="root_attribute_value">
@@ -50,47 +36,47 @@ class Bug008Test extends TestCase
 </root>
 
 END_XML
-                    ,
-                    'array' => [
-                        'root' => [
-                            'container' => [
-                                'item' => [
-                                    'term' => 'description',
-                                    'label' => null,
-                                    'zero' => 0,
-                                    'zeroCData' => [
-                                        '@cdata' => 0,
-                                    ],
-                                    '@attributes' => [
-                                        'present' => 'none',
-                                        'zero' => 0,
-                                    ],
-                                    'node' => [
-                                        '@attributes' => [
-                                            'present' => 'years',
-                                            'empty' => null,
-                                            'zero' => 0,
-                                        ],
-                                        '@value' => 0,
-                                    ],
-                                ],
-                            ],
-                            '@attributes' => [
-                                'root_attribute' => 'root_attribute_value',
-                            ],
-                        ],
-                        '@docType' => [
-                            'name' => 'root',
-                            'entities' => null,
-                            'notations' => null,
-                            'publicId' => '-//W3C//DTD XHTML 1.0 Transitional//EN',
-                            'systemId' => 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd',
-                            'internalSubset' => null,
-                        ],
+          ,
+          'array' => [
+            'root' => [
+              'container' => [
+                'item' => [
+                  'term' => 'description',
+                  'label' => null,
+                  'zero' => 0,
+                  'zeroCData' => [
+                    '@cdata' => 0,
+                  ],
+                  '@attributes' => [
+                    'present' => 'none',
+                    'zero' => 0,
+                  ],
+                  'node' => [
+                    '@attributes' => [
+                      'present' => 'years',
+                      'empty' => null,
+                      'zero' => 0,
                     ],
+                    '@value' => 0,
+                  ],
                 ],
-                'External DTD' => [
-                    'xml' => <<< 'END_XML'
+              ],
+              '@attributes' => [
+                'root_attribute' => 'root_attribute_value',
+              ],
+            ],
+            '@docType' => [
+              'name' => 'root',
+              'entities' => null,
+              'notations' => null,
+              'publicId' => '-//W3C//DTD XHTML 1.0 Transitional//EN',
+              'systemId' => 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd',
+              'internalSubset' => null,
+            ],
+          ],
+        ],
+        'External DTD' => [
+          'xml' => <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE root SYSTEM "external.dtd">
 <root root_attribute="root_attribute_value">
@@ -106,45 +92,60 @@ END_XML
 </root>
 
 END_XML
-                    ,
-                    'array' => [
-                        'root' => [
-                            'container' => [
-                                'item' => [
-                                    'term' => 'description',
-                                    'label' => null,
-                                    'zero' => 0,
-                                    'zeroCData' => [
-                                        '@cdata' => 0,
-                                    ],
-                                    '@attributes' => [
-                                        'present' => 'none',
-                                        'zero' => 0,
-                                    ],
-                                    'node' => [
-                                        '@attributes' => [
-                                            'present' => 'years',
-                                            'empty' => null,
-                                            'zero' => 0,
-                                        ],
-                                        '@value' => 0,
-                                    ],
-                                ],
-                            ],
-                            '@attributes' => [
-                                'root_attribute' => 'root_attribute_value',
-                            ],
-                        ],
-                        '@docType' => [
-                            'name' => 'root',
-                            'entities' => null,
-                            'notations' => null,
-                            'publicId' => null,
-                            'systemId' => 'external.dtd',
-                            'internalSubset' => null,
-                        ],
+          ,
+          'array' => [
+            'root' => [
+              'container' => [
+                'item' => [
+                  'term' => 'description',
+                  'label' => null,
+                  'zero' => 0,
+                  'zeroCData' => [
+                    '@cdata' => 0,
+                  ],
+                  '@attributes' => [
+                    'present' => 'none',
+                    'zero' => 0,
+                  ],
+                  'node' => [
+                    '@attributes' => [
+                      'present' => 'years',
+                      'empty' => null,
+                      'zero' => 0,
                     ],
+                    '@value' => 0,
+                  ],
                 ],
-            ];
-    }
+              ],
+              '@attributes' => [
+                'root_attribute' => 'root_attribute_value',
+              ],
+            ],
+            '@docType' => [
+              'name' => 'root',
+              'entities' => null,
+              'notations' => null,
+              'publicId' => null,
+              'systemId' => 'external.dtd',
+              'internalSubset' => null,
+            ],
+          ],
+        ],
+      ];
+  }
+
+  /**
+   * @throws Exception
+   *
+   * @dataProvider provideDataForRootAttributesAndDocTypes
+   */
+  #[DataProvider('provideDataForRootAttributesAndDocTypes')]
+  public function testRootAttributesAndDocTypes(string $xml, array $array)
+  {
+    $actualXMLResults = Array2XML::createXML('root', $array['root'] ?? [], $array['@docType'] ?? [])->saveXML();
+    $actualArrayResults = XML2Array::createArray($xml);
+
+    $this->assertEquals($xml, $actualXMLResults, '');
+    $this->assertEquals($array, $actualArrayResults, '');
+  }
 }

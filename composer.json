@@ -20,12 +20,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "LaLit\\": "src"
+      "LaLit\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LaLitTests\\": "tests"
+      "LaLitTests\\": "tests/"
     }
   },
   "require": {

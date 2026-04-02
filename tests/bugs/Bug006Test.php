@@ -10,36 +10,36 @@ use LaLitTests\TestCase;
  */
 class Bug006Test extends TestCase
 {
-    public function testZeroValues()
-    {
-        $array = [
-            'container' => [
-                'item' => [
-                    'term' => 'description',
-                    'label' => null,
-                    'zero' => 0,
-                    'zeroCData' => [
-                        '@cdata' => 0,
-                    ],
-                    '@attributes' => [
-                        'present' => 'none',
-                        'zero' => 0,
-                    ],
-                    'node' => [
-                        '@attributes' => [
-                            'present' => 'years',
-                            'empty' => null,
-                            'zero' => 0,
-                        ],
-                        '@value' => 0,
-                    ],
-                ],
+  public function testZeroValues()
+  {
+    $array = [
+      'container' => [
+        'item' => [
+          'term' => 'description',
+          'label' => null,
+          'zero' => 0,
+          'zeroCData' => [
+            '@cdata' => 0,
+          ],
+          '@attributes' => [
+            'present' => 'none',
+            'zero' => 0,
+          ],
+          'node' => [
+            '@attributes' => [
+              'present' => 'years',
+              'empty' => null,
+              'zero' => 0,
             ],
-        ];
+            '@value' => 0,
+          ],
+        ],
+      ],
+    ];
 
-        $actualResults = Array2XML::createXML('root', $array)->saveXML();
+    $actualResults = Array2XML::createXML('root', $array)->saveXML();
 
-        $expectedResults = <<< 'END_XML'
+    $expectedResults = <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <root>
   <container>
@@ -55,6 +55,6 @@ class Bug006Test extends TestCase
 
 END_XML;
 
-        $this->assertEquals($expectedResults, $actualResults, 'Failed to handle empty @values');
-    }
+    $this->assertEquals($expectedResults, $actualResults, 'Failed to handle empty @values');
+  }
 }

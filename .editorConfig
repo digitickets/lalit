@@ -1,0 +1,2 @@
+[tests/Issues/Fixtures/Issue020Test.diff]
+trim_trailing_whitespace = false
