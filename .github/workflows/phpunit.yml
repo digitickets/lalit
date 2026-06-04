@@ -14,20 +14,37 @@ jobs:
 
     strategy:
       matrix:
-        php-version:
-          - '7.0'
-          - '7.1'
-          - '7.2'
-          - '7.3'
-          - '7.4'
-          - '8.0'
-          - '8.1'
-          - '8.2'
-          - '8.3'
+        include:
+          - php-version: '7.0'
+            phpunit-config: phpunit_pre73.xml
+
+          - php-version: '7.1'
+            phpunit-config: phpunit_pre73.xml
+
+          - php-version: '7.2'
+            phpunit-config: phpunit_pre73.xml
+
+          - php-version: '7.3'
+            phpunit-config: phpunit.xml
+
+          - php-version: '7.4'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.0'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.1'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.2'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.3'
+            phpunit-config: phpunit.xml
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -35,7 +52,7 @@ jobs:
           php-version: ${{ matrix.php-version }}
 
       - name: Install dependencies with Composer
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         with:
           dependency-versions: highest
 
@@ -43,10 +60,10 @@ jobs:
         run: mkdir -p test-results/phpunit
 
       - name: Run PHPUnit
-        run: vendor/bin/phpunit --log-junit test-results/phpunit/junit_${{ matrix.php-version }}.xml
+        run: vendor/bin/phpunit --configuration ${{ matrix.phpunit-config }} --log-junit test-results/phpunit/junit_${{ matrix.php-version }}.xml
 
       - name: Capture logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: logs-${{ matrix.php-version }}

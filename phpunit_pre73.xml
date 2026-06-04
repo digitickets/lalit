@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phpunit
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         bootstrap="vendor/autoload.php"
         colors="true"
         columns="max"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
         stopOnFailure="false"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
-    <coverage>
-        <include>
+    <filter>
+        <whitelist>
             <directory suffix=".php">src/</directory>
-        </include>
-    </coverage>
+        </whitelist>
+    </filter>
     <php>
         <ini name="memory_limit" value="-1"/>
     </php>

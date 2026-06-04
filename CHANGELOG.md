@@ -1,5 +1,9 @@
 # Version History
 
+## 3.4.2 - 2026/06/04
+
+- Split PHPUnit configuration XML into 2 as pre-7.3 is different layout. 
+
 ## 3.4.1 - 2026/04/02
 
 - Fixed checking of values against the FULL list as defined in https://www.w3.org/TR/xml/#NT-Char. (Thank you Makar
