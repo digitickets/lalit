@@ -15,12 +15,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - php-version: '7.0'
-            phpunit-config: phpunit_pre73.xml
-
-          - php-version: '7.1'
-            phpunit-config: phpunit_pre73.xml
-
           - php-version: '7.2'
             phpunit-config: phpunit_pre73.xml
 
@@ -40,6 +34,15 @@ jobs:
             phpunit-config: phpunit.xml
 
           - php-version: '8.3'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.4'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.5'
+            phpunit-config: phpunit.xml
+
+          - php-version: '8.6'
             phpunit-config: phpunit.xml
 
     steps:

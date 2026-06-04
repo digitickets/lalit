@@ -121,7 +121,7 @@ class XML2Array
    *
    * @return array|null
    */
-  private static function getNamedNodeMapAsArray(DOMNamedNodeMap $namedNodeMap)
+  private static function getNamedNodeMapAsArray(DOMNamedNodeMap $namedNodeMap) : ?array
   {
     $result = null;
     if ($namedNodeMap->length) {
@@ -138,7 +138,7 @@ class XML2Array
    *
    * @param DOMNode $node - XML as a string or as an object of DOMDocument
    *
-   * @return array
+   * @return string|string[]
    */
   private static function convert(DOMNode $node)
   {

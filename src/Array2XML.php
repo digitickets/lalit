@@ -30,13 +30,13 @@ class Array2XML
    * Convert an Array to XML.
    *
    * @param string $node_name - name of the root node to be converted
-   * @param array|null $arr - array to be converted
+   * @param array|string|null $arr - array to be converted
    * @param array $docType - optional docType
    *
    * @return DomDocument
    * @throws Exception
    */
-  public static function createXML(string $node_name, $arr = [], array $docType = [])
+  public static function createXML(string $node_name, $arr = [], array $docType = []): DomDocument
   {
     $xml = self::getXMLRoot();
 
@@ -63,7 +63,7 @@ class Array2XML
    *
    * @return DomDocument|null
    */
-  private static function getXMLRoot()
+  private static function getXMLRoot(): ?DomDocument
   {
     if (empty(self::$xml)) {
       self::init();
@@ -82,7 +82,7 @@ class Array2XML
    *
    * @throws Exception
    */
-  private static function convert(string $node_name, $arr = [])
+  private static function convert(string $node_name, $arr = []): DOMNode
   {
     $xml = self::getXMLRoot();
     $node = $xml->createElement($node_name);
@@ -172,7 +172,7 @@ class Array2XML
    *
    * @return string
    */
-  private static function bool2str($v)
+  private static function bool2str($v): string
   {
     //convert boolean to text value.
     $v = $v === true ? 'true' : $v;
@@ -185,7 +185,7 @@ class Array2XML
    * Check if the value contains illegal characters
    * Ref: https://www.w3.org/TR/xml/#NT-Char
    */
-  private static function isValidValue(string $value = null): bool
+  private static function isValidValue(?string $value = null): bool
   {
     $pattern = '/^[\x09\x0A\x0D\x20-\x{D7FF}\x{E000}-\x{FFFD}\x{10000}-\x{10FFFF}]*$/u';
 

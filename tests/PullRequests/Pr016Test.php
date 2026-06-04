@@ -146,10 +146,10 @@ class Pr016Test extends TestCase
   #[DataProvider('provideLabels')]
   public function testLabels(
     array $data,
-    string $attributesLabel = null,
-    string $cdataLabel = null,
-    string $docTypeLabel = null,
-    string $valueLabel = null
+    ?string $attributesLabel = null,
+    ?string $cdataLabel = null,
+    ?string $docTypeLabel = null,
+    ?string $valueLabel = null
   ) {
     $xml = <<< 'END_XML'
 <?xml version="1.0" encoding="utf-8" standalone="no"?>

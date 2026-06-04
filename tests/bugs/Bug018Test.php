@@ -77,6 +77,7 @@ END_XML
     $html = str_replace(
       ['>>0A<<', '>>0D<<'],
       [chr(10), chr(13)],
+      (PHP_VERSION_ID >= 80400 ? '<!DOCTYPE root PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'.PHP_EOL : '').
       <<< 'END_HTML'
 <root><container><newline_and_tabs>
       description 1>>0A<<with embedded x0a

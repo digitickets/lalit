@@ -66,15 +66,15 @@ trait InitTrait
    * @param string|null $labelValue Defaults to '@value' (Constants::LABEL_VALUE)
    */
   public static function init(
-    string $version = null,
-    string $encoding = null,
-    bool $standalone = null,
-    bool $format_output = null,
-    string $labelAttributes = null,
-    string $labelCData = null,
-    string $labelDocType = null,
-    string $labelValue = null
-  ) {
+    ?string $version = null,
+    ?string $encoding = null,
+    ?bool $standalone = null,
+    ?bool $format_output = null,
+    ?string $labelAttributes = null,
+    ?string $labelCData = null,
+    ?string $labelDocType = null,
+    ?string $labelValue = null
+  ): void {
     self::setDomVersion($version);
     self::setEncoding($encoding);
     self::setStandalone($standalone);
@@ -90,13 +90,12 @@ trait InitTrait
     self::$xml->formatOutput = self::isFormatOutput();
   }
 
-
   public static function getDomVersion(): string
   {
     return self::$domVersion;
   }
 
-  protected static function setDomVersion(string $domVersion = null)
+  protected static function setDomVersion(?string $domVersion = null): void
   {
     self::$domVersion = $domVersion ?? Constants::DEFAULT_DOM_VERSION;
   }
@@ -106,7 +105,7 @@ trait InitTrait
     return self::$encoding;
   }
 
-  protected static function setEncoding(string $encoding = null)
+  protected static function setEncoding(?string $encoding = null): void
   {
     self::$encoding = $encoding ?? Constants::DEFAULT_ENCODING;
   }
@@ -116,7 +115,7 @@ trait InitTrait
     return self::$standalone;
   }
 
-  protected static function setStandalone(bool $standalone = null)
+  protected static function setStandalone(?bool $standalone = null): void
   {
     self::$standalone = $standalone ?? Constants::DEFAULT_STANDALONE;
   }
@@ -126,7 +125,7 @@ trait InitTrait
     return self::$formatOutput;
   }
 
-  protected static function setFormatOutput(bool $formatOutput = null)
+  protected static function setFormatOutput(?bool $formatOutput = null): void
   {
     self::$formatOutput = $formatOutput ?? Constants::DEFAULT_FORMAT_OUTPUT;
   }
@@ -136,7 +135,7 @@ trait InitTrait
     return self::$labelAttributes;
   }
 
-  protected static function setLabelAttributes(string $labelAttributes = null)
+  protected static function setLabelAttributes(?string $labelAttributes = null): void
   {
     self::$labelAttributes = $labelAttributes ?? Constants::LABEL_ATTRIBUTES;
   }
@@ -146,7 +145,7 @@ trait InitTrait
     return self::$labelCData;
   }
 
-  protected static function setLabelCData(string $labelCData = null)
+  protected static function setLabelCData(?string $labelCData = null): void
   {
     self::$labelCData = $labelCData ?? Constants::LABEL_CDATA;
   }
@@ -156,7 +155,7 @@ trait InitTrait
     return self::$labelDocType;
   }
 
-  protected static function setLabelDocType(string $labelDocType = null)
+  protected static function setLabelDocType(?string $labelDocType = null): void
   {
     self::$labelDocType = $labelDocType ?? Constants::LABEL_DOCTYPE;
   }
@@ -166,7 +165,7 @@ trait InitTrait
     return self::$labelValue;
   }
 
-  protected static function setLabelValue(string $labelValue = null)
+  protected static function setLabelValue(?string $labelValue = null): void
   {
     self::$labelValue = $labelValue ?? Constants::LABEL_VALUE;
   }
